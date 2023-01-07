@@ -76,7 +76,7 @@ open class TTSingleCellTypeTableView<T: TTTableViewCell>:TTTableView, UITableVie
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return config.fixedRowHeight > 0.0 ? config.fixedRowHeight : UITableViewAutomaticDimension
+        return config.fixedRowHeight > 0.0 ? config.fixedRowHeight : UITableView.automaticDimension
     }
 }
 

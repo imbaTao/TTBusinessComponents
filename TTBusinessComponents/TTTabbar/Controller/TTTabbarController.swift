@@ -80,7 +80,7 @@ open class TTTabbarViewController: UITabBarController {
         super.viewDidLayoutSubviews()
         // 把图层移到最上层,否则会被系统层的UITabbarButton挡住
         if let tabbar = myTabbar {
-            tabbar.bringSubview(toFront: tabbar.barContainer)
+            tabbar.bringSubviewToFront(tabbar.barContainer)
         }
     }
     

@@ -25,7 +25,7 @@ open class TTActiveLabel: ActiveLabel {
             attDic[NSAttributedString.Key.font] = font
             attDic[NSAttributedString.Key.foregroundColor] = color
             if underLine {
-                attDic[NSAttributedString.Key.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
+                attDic[NSAttributedString.Key.underlineStyle] = NSUnderlineStyle.single.rawValue
             }
             return attDic
         }

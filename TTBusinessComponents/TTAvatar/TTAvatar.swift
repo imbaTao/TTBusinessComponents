@@ -10,7 +10,7 @@ import Kingfisher
 
 open class TTAvatar: UIImageView {
     private var iRadius: CGFloat = 0.0
-    public init(image: UIImage? = TTIcons.test(),avatarUrlPath: String? = nil,placeHolder: UIImage? = nil,radius: CGFloat = 0.0,contentMode: UIViewContentMode = .scaleAspectFill,loadImageComplete: ((Int,String?,UIImage?) -> ())? = nil) {
+    public init(image: UIImage? = TTIcons.test(),avatarUrlPath: String? = nil,placeHolder: UIImage? = nil,radius: CGFloat = 0.0,contentMode: UIView.ContentMode = .scaleAspectFill,loadImageComplete: ((Int,String?,UIImage?) -> ())? = nil) {
         super.init(image: image)
         iRadius = radius
         self.contentMode = contentMode
