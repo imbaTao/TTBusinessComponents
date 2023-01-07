@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'TTBusinessComponents_Example' do
+  pod 'TTBusinessComponents', :path => '../'
+  pod 'TTUIKit',:path => '../../TTUIKit'
+  pod 'TTAssistKit',:path => '../../TTAssistKit'
+  target 'TTBusinessComponents_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
