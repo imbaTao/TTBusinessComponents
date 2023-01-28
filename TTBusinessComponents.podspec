@@ -44,27 +44,28 @@ TODO: Add long description of the pod here.
   s.subspec 'TTActiveLabel' do |ss|
     ss.source_files = 'TTBusinessComponents/TTActiveLabel/**/*'
     ss.dependency "ActiveLabel"
-    
   end
 
-  # activeLabel
+  # TTStaticList
   s.subspec 'TTStaticList' do |ss|
     ss.source_files = 'TTBusinessComponents/TTStaticList/**/*'
-    
   end
 
   # customTableView
   s.subspec 'TTCustomListView' do |ss|
     ss.source_files = 'TTBusinessComponents/TTCustomListView/**/*'
     ss.dependency 'TTUIKit/TTComponents/TTListView'
-    
   end
   
   # tabbar
   s.subspec 'TTTabbar' do |ss|
     ss.source_files = 'TTBusinessComponents/TTTabbar/**/*'
     ss.dependency 'TTUIKit/TTComponents/TTListView'
-    
+  end
+  
+  # codeInputBar
+  s.subspec 'TTAuthCodeInputBar' do |ss|
+    ss.source_files = 'TTBusinessComponents/TTAuthCodeInputBar/**/*'
   end
   
   

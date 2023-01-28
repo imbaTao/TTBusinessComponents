@@ -1,11 +1,15 @@
 use_frameworks!
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'TTBusinessComponents_Example' do
   pod 'TTBusinessComponents', :path => '../'
   pod 'TTUIKit',:path => '../../TTUIKit'
   pod 'TTAssistKit',:path => '../../TTAssistKit'
+  
+  pod 'IQKeyboardManagerSwift'
+  pod 'LookinServer', :configurations => ['Debug']#DEBug调试UI用,得配合Lookin客户端
+    
   target 'TTBusinessComponents_Tests' do
     inherit! :search_paths
 

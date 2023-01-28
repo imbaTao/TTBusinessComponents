@@ -13,7 +13,7 @@ class TTTabbar: UITabBar {
     // 分割线
     lazy var segementLine: UIView = {
         var line = UIView()
-        line.backgroundColor = .gray0
+        line.backgroundColor = .gray102
         self.addSubview(line)
         self.layer.insertSublayer(line.layer, at: 0)
         line.snp.makeConstraints { (make) in

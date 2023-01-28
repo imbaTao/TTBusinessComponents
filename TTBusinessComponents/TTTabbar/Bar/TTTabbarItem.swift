@@ -99,7 +99,7 @@ class TTTabbarItem: TTButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public required init(_ configBlock: ((_ config: TTButtonConfig) -> ())? = nil) {
+    required init(_ configBlock: ((inout TTButtonConfig) -> ())? = nil) {
         fatalError("init(_:) has not been implemented")
     }
 }
