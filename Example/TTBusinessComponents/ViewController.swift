@@ -32,14 +32,64 @@ class ViewController: TTViewController {
     }()
     override func setupUI() {
         super.setupUI()
+        injected()
+//        addSubView(myList)
+//        myList.snp.makeConstraints { (make) in
+//            make.edges.equalToSuperview()
+//        }
+//
+//        cellModels.bind(to: myList.items).disposed(by: rx.disposeBag);
+    }
+    
+    
+    
+    @objc func injected() {
+        view.backgroundColor = .white
+        view.removeSubviews()
         
-        addSubView(myList)
-        myList.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
+        let inputBar = TTAuthCodeInputBar<MyInputItem>(inputItemCount: 5)
+        inputBar.inputComplete = { _ in
+            print("输入完成了！")
+        }
+        inputBar.backgroundColor = .orange
+        addSubView(inputBar)
+        inputBar.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+//            make.width.equalTo(300)
+            make.centerY.equalToSuperview()
         }
         
-        cellModels.bind(to: myList.items).disposed(by: rx.disposeBag);
+        let view = UITextField()
+        view.backgroundColor = .red
+        addSubView(view)
+        
+        view.snp.makeConstraints { (make) in
+            make.top.equalTo(200)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(100)
+        }
     }
+    
+    
+    class MyInputItem: TTAuthCodeInputBarInputItem {
+        
+        override func didChangeState(_ state: TTAuthCodeInputBarInputItem.InputState) {
+            super.didChangeState(state)
+            switch state {
+            case .inputing:
+                addBorder(color: .blue,width: 5)
+            default:
+                borderWidth = 0
+                break
+            }
+            
+        }
+        
+   
+        
+    }
+    
+    
     
     override func setupEvents() {
         super.setupEvents()
@@ -68,13 +118,6 @@ class ViewController: TTViewController {
             print("反选" + (model.titleRelay.value ?? ""))
         }).disposed(by: rx.disposeBag)
     }
-    
-    
-    
-//    @objc func injected() {
-//        print("123123");
-//
-//    }
     
 }
 

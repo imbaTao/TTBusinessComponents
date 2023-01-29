@@ -9,6 +9,7 @@
 import UIKit
 import TTUIKit
 import TTBusinessComponents
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -53,6 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        tabbarVC.addChildViewController(vc)
 //        window?.rootViewController = tabbarVC
         
+        
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         return true
     }
 
