@@ -9,9 +9,7 @@ import TTUIKit
 import RxSwift
 import RxCocoa
 
-open class TTAuthCodeInputBar: TTStackView {
-    /// 内容
-    public let contentChanged = PublishSubject<String>()
+open class TTAuthCodeInputBar<T: TTAuthCodeInputBarInputItem>: TTStackView {
     
     /// 汇总多个textField
     public var content: String {
@@ -24,6 +22,9 @@ open class TTAuthCodeInputBar: TTStackView {
         return str
     }
     
+    // complete
+    public var inputComplete: ((String) -> ())? = nil
+    
     public init(inputItemCount: Int) {
         super.init(frame: .zero)
         createItems(inputItemCount: inputItemCount)
@@ -34,117 +35,86 @@ open class TTAuthCodeInputBar: TTStackView {
         super.setupUI()
         axis = .horizontal
     }
-    
+
     func createItems(inputItemCount: Int) {
-        for _ in 0..<inputItemCount {
-            let item = TTAuthCodeInputBarInputItem()
+        for index in 0..<inputItemCount {
+            let item = T(index)
             
-            // 点击选中item
-            item.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] (_) in guard let self = self else { return }
-                self.selecteInputItem(item)
-            }).disposed(by: item.rx.disposeBag)
-            
-            // 监听item的状态
-            item.stateRelay.subscribe(onNext: {[weak self] (state) in guard let self = self else { return }
-                switch state {
+            // stateChanged
+            item.inputStateDidChange = { [weak self] inputState in guard let self = self else { return }
+                switch inputState {
                 case .complte:
-                    self.switchNextInputItem(item)
-                    
-                    // 同步外部
-                    self.contentChanged.onNext(self.content)
+                    self.switchNextInputItem()
                 default:
                     break
                 }
-            }).disposed(by: item.rx.disposeBag)
-            
-            
+            }
+    
+            // deleteButton
             item.inputTF.rx.sentMessage(#selector(UIKeyInput.deleteBackward)).subscribe(onNext: {
-                [weak self] (_) in guard let self = self else { return }
-                // 点击删除键
-                self.switchLastInputItem(item)
-
-                // 同步外部
-                self.contentChanged.onNext(self.content)
-            }).disposed(by: item.rx.disposeBag)
-
+                    [weak self] (_) in guard let self = self else { return }
+                self.switchLastInputItem()
+            }).disposed(by: rx.disposeBag)
             
             item.backgroundColor = .random
             addArrangedSubview(item)
         }
     }
-    
-    /// 选中当前输入框
-    func selecteInputItem(_ selectedItem: TTAuthCodeInputBarInputItem) {
-        // 选中下标
-        guard let selectedItemIndex = arrangedSubviews.firstIndex(of: selectedItem) else {
-            return
-        }
-        
-        // 上一个有内容的item
-        if  let lastHasContentItem = arrangedSubviews.first(where: { item in
-            if let item = item as? TTAuthCodeInputBarInputItem {
-                return item.inputTF.text?.isNotEmpty ?? false
+
+    func fetchCurrentInputItem() -> TTAuthCodeInputBarInputItem? {
+         let currentItem = arrangedSubviews.first(where: { subView in
+            if let subView = subView as? TTAuthCodeInputBarInputItem {
+                return subView.inputTF.isFirstResponder
             }
             return false
-        }) {
-            guard let lastHasContentItemIndex = arrangedSubviews.firstIndex(of: lastHasContentItem) else {
-                return
-            }
-            
-            // 下标相等可以允许选中
-            let isNextIndex = (selectedItemIndex - lastHasContentItemIndex == 1)
-            if selectedItemIndex == lastHasContentItemIndex || isNextIndex  {
-                selectedItem.changeState(.inputing)
-            }
-        }else {
-            // 是第一个
-            selectedItem.changeState(.inputing)
-        }
+        }) as? TTAuthCodeInputBarInputItem
+        return currentItem
     }
-
-    // 切换上一个
-    func switchLastInputItem(_ currentItem: TTAuthCodeInputBarInputItem) {
-        guard let currentIndex = arrangedSubviews.firstIndex(of: currentItem) else {
-            return
-        }
-        let lastIndex = currentIndex - 1
-        
-        if lastIndex >= 0 {
-            // 如果当前item是最后一个,内容不为空，就先清空自己
-            if currentIndex == arrangedSubviews.maxIndex, currentItem.inputTF.text != "" {
-                currentItem.inputTF.text = ""
-                return
-            }
-
-            let lastItem = arrangedSubviews[lastIndex] as! TTAuthCodeInputBarInputItem
-            // 清空上一个
-            lastItem.inputTF.text = ""
-            lastItem.changeState(.inputing)
-            currentItem.changeState(.unInput)
-        } else {
-            // 是第一个不做处理
-        }
-    }
-
+    
     // 切换下一个
-    func switchNextInputItem(_ currentItem: TTAuthCodeInputBarInputItem) {
-        guard let currentIndex = arrangedSubviews.firstIndex(of: currentItem) else {
+    func switchNextInputItem() {
+        guard let currentItem = fetchCurrentInputItem() else {
             return
         }
         
-        let nextIndex = currentIndex + 1
-        if nextIndex <= arrangedSubviews.maxIndex {
-            let nextItem = arrangedSubviews[nextIndex] as! TTAuthCodeInputBarInputItem
+        // isLastItem
+        if currentItem.index == arrangedSubviews.maxIndex {
+            // 输入完成
+            inputComplete?(content)
+        }else {
+            currentItem.changeState(.freeze)
+            let nextItem = arrangedSubviews[currentItem.index + 1] as! TTAuthCodeInputBarInputItem
             nextItem.changeState(.inputing)
-
-            // 当前输入完毕
-            currentItem.changeState(.complte)
-        } else {
-            // 是最后一个停止输入,收起键盘
-            //            currentItem.inputTF.resignFirstResponder()
         }
     }
     
+    // 切换上一个
+    func switchLastInputItem() {
+        guard let currentItem = fetchCurrentInputItem() else {
+            return
+        }
+        
+        func next() {
+            let lastItem = arrangedSubviews[currentItem.index - 1] as! TTAuthCodeInputBarInputItem
+            currentItem.changeState(.unInput)
+            lastItem.resetContent()
+            lastItem.changeState(.inputing)
+        }
+        
+        
+        if currentItem.index == 0 {
+            // firstOne nothing
+        }else if currentItem.index == arrangedSubviews.maxIndex {
+            if currentItem.inputTF.text?.isNotEmpty ?? false {
+                currentItem.resetContent()
+            }else {
+                next()
+            }
+        }else {
+            next()
+        }
+    }
+
     required public init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

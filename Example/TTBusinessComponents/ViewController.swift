@@ -47,7 +47,10 @@ class ViewController: TTViewController {
         view.backgroundColor = .white
         view.removeSubviews()
         
-        let inputBar = TTAuthCodeInputBar(inputItemCount: 5)
+        let inputBar = TTAuthCodeInputBar<MyInputItem>(inputItemCount: 5)
+        inputBar.inputComplete = { _ in
+            print("输入完成了！")
+        }
         inputBar.backgroundColor = .orange
         addSubView(inputBar)
         inputBar.snp.makeConstraints { (make) in
@@ -65,6 +68,25 @@ class ViewController: TTViewController {
             make.centerX.equalToSuperview()
             make.size.equalTo(100)
         }
+    }
+    
+    
+    class MyInputItem: TTAuthCodeInputBarInputItem {
+        
+        override func didChangeState(_ state: TTAuthCodeInputBarInputItem.InputState) {
+            super.didChangeState(state)
+            switch state {
+            case .inputing:
+                addBorder(color: .blue,width: 5)
+            default:
+                borderWidth = 0
+                break
+            }
+            
+        }
+        
+   
+        
     }
     
     
