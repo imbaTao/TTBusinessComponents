@@ -1,0 +1,242 @@
+PODS:
+  - ActiveLabel (1.1.0)
+  - IQKeyboardManagerSwift (6.5.10)
+  - Kingfisher (6.3.1)
+  - LookinServer (1.1.2):
+    - LookinServer/Core (= 1.1.2)
+  - LookinServer/Core (1.1.2)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
+  - ReachabilitySwift (5.0.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxGesture (4.0.4):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxOptional (5.0.2):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SnapKit (5.6.0)
+  - TTAssistKit (1.0.2):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTAssistKit/TTAssistCore (= 1.0.2)
+    - TTAssistKit/TTDevice (= 1.0.2)
+    - TTAssistKit/TTNetObserver (= 1.0.2)
+  - TTAssistKit/TTAssistCore (1.0.2):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - TTAssistKit/TTDevice (1.0.2):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTAssistKit/TTAssistCore
+  - TTAssistKit/TTNetObserver (1.0.2):
+    - "NSObject+Rx (= 5.2.2)"
+    - ReachabilitySwift
+    - RxCocoa (= 6.5.0)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTAssistKit/TTAssistCore
+  - TTBusinessComponents (0.1.0):
+    - TTBusinessComponents/TTActiveLabel (= 0.1.0)
+    - TTBusinessComponents/TTAuthCodeInputBar (= 0.1.0)
+    - TTBusinessComponents/TTAvatar (= 0.1.0)
+    - TTBusinessComponents/TTCustomListView (= 0.1.0)
+    - TTBusinessComponents/TTStaticList (= 0.1.0)
+    - TTBusinessComponents/TTTabbar (= 0.1.0)
+    - TTUIKit
+  - TTBusinessComponents/TTActiveLabel (0.1.0):
+    - ActiveLabel
+    - TTUIKit
+  - TTBusinessComponents/TTAuthCodeInputBar (0.1.0):
+    - TTUIKit
+  - TTBusinessComponents/TTAvatar (0.1.0):
+    - Kingfisher
+    - TTUIKit
+  - TTBusinessComponents/TTCustomListView (0.1.0):
+    - TTUIKit
+    - TTUIKit/TTComponents/TTListView
+  - TTBusinessComponents/TTStaticList (0.1.0):
+    - TTUIKit
+  - TTBusinessComponents/TTTabbar (0.1.0):
+    - TTUIKit
+    - TTUIKit/TTComponents/TTListView
+  - TTUIKit (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTAutoSizeView (= 1.0.0)
+    - TTUIKit/TTComponents (= 1.0.0)
+    - TTUIKit/TTCore (= 1.0.0)
+    - TTUIKit/TTExtension (= 1.0.0)
+    - TTUIKit/TTIcons (= 1.0.0)
+  - TTUIKit/TTAutoSizeView (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+  - TTUIKit/TTComponents (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTComponents/TTAlert (= 1.0.0)
+    - TTUIKit/TTComponents/TTButton (= 1.0.0)
+    - TTUIKit/TTComponents/TTListView (= 1.0.0)
+    - TTUIKit/TTComponents/TTTextInput (= 1.0.0)
+    - TTUIKit/TTComponents/TTToast (= 1.0.0)
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+    - TTUIKit/TTIcons
+  - TTUIKit/TTComponents/TTAlert (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTAssistKit/TTDevice
+    - TTUIKit/TTAutoSizeView
+    - TTUIKit/TTComponents/TTButton
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+    - TTUIKit/TTIcons
+  - TTUIKit/TTComponents/TTButton (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTAutoSizeView
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+    - TTUIKit/TTIcons
+  - TTUIKit/TTComponents/TTListView (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTAutoSizeView
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+    - TTUIKit/TTIcons
+  - TTUIKit/TTComponents/TTTextInput (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+    - TTUIKit/TTIcons
+  - TTUIKit/TTComponents/TTToast (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTCore
+    - TTUIKit/TTExtension
+    - TTUIKit/TTIcons
+  - TTUIKit/TTCore (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - SnapKit (= 5.6.0)
+  - TTUIKit/TTExtension (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+    - TTUIKit/TTCore
+  - TTUIKit/TTIcons (1.0.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxGesture (= 4.0.4)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+
+DEPENDENCIES:
+  - IQKeyboardManagerSwift
+  - LookinServer
+  - TTAssistKit (from `../../TTAssistKit`)
+  - TTBusinessComponents (from `../`)
+  - TTUIKit (from `../../TTUIKit`)
+
+SPEC REPOS:
+  trunk:
+    - ActiveLabel
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - LookinServer
+    - "NSObject+Rx"
+    - ReachabilitySwift
+    - RxCocoa
+    - RxGesture
+    - RxOptional
+    - RxRelay
+    - RxSwift
+    - SnapKit
+
+EXTERNAL SOURCES:
+  TTAssistKit:
+    :path: "../../TTAssistKit"
+  TTBusinessComponents:
+    :path: "../"
+  TTUIKit:
+    :path: "../../TTUIKit"
+
+SPEC CHECKSUMS:
+  ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
+  LookinServer: bb667a77f1ee594a8e91226e729dbe49f3401f5c
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
+  RxOptional: 3664964c96b69dd20c9cf78bdfe546615e26eca8
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  TTAssistKit: e08d942b137df0bdc50bf0a29105297a324ef683
+  TTBusinessComponents: 5509780e27ea3759815cf21bef910237d9d4381c
+  TTUIKit: fc0ec70410381fcf763e4fc17902db7724883fb1
+
+PODFILE CHECKSUM: 0c2906c188c0a1ad3c968f2680753617524c68f2
+
+COCOAPODS: 1.11.3
