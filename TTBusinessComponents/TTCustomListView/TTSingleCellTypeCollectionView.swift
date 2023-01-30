@@ -23,30 +23,13 @@ open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnection
     open override func setupUI() {
         config.cellTypes.append(T.self)
         super.setupUI()
-        
-        // 设置tableView额外代理，可以自定义UI
-//       _ = rx.setDelegate(self);
-//        _ = rx.setDataSource(self);
+
         delegate = self
         dataSource = self
     }
     
     open override func setupEvents() {
         super.setupEvents()
-        
-        // 绑定数据源
-        
-//        let dataSource = RxCollectionViewSectionedReloadDataSource<SectionModel<String, ItemViewModel>>()
-        
-//        let dataSource = RxCollectionViewSectionedReloadDataSource
-//                   <SectionModel<String, String>>(
-//                   configureCell: { (dataSource, collectionView, indexPath, item) in
-//                       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell",
-//                                                       for: indexPath) as! TTCollectionViewCell
-//                       cell.bindViewModel(item)
-//                       return cell}
-//               )
-//
         
         //绑定单元格数据
 //        items.bind(to: collectionView.rx.items(dataSource: dataSource))
@@ -66,21 +49,6 @@ open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnection
         items.subscribe(onNext: {[weak self] (_) in guard let self = self else { return }
             self.reloadData()
         }).disposed(by: rx.disposeBag)
-        
-//
-//        // 模型选中
-//        rx.modelSelected(TTCollectionViewCellViewModel.self).subscribe(onNext: {
-//            [weak self]  item in guard let self = self else { return }
-//            self.modelSelected.onNext(item)
-//            item.selecteStateRelay.accept(true)
-//        }).disposed(by: rx.disposeBag)
-
-//        // 模型反选
-//        rx.modelDeselected(TTCollectionViewCellViewModel.self).subscribe(onNext: {
-//            [weak self] item in  guard let self = self else { return }
-//            self.modelDeselected.onNext(item)
-//            item.selecteStateRelay.accept(false)
-//        }).disposed(by: rx.disposeBag)
     }
     
     // MARK: - dataSource
@@ -125,3 +93,34 @@ open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnection
     }
 }
 
+
+public extension TTSingleCellTypeCollectionView {
+    #if DEBUG
+    func testData(_ data: [TTVersatileTableViewCellViewModel] = []) {
+        
+        if data.isEmpty {
+            let data = [
+                TestCellViewModel.init(.init()),
+                TestCellViewModel.init(.init()),
+                TestCellViewModel.init(.init())
+            ]
+            items.accept(data)
+        }else {
+            items.accept(data)
+        }
+  
+    }
+    #endif
+    
+}
+
+
+#if DEBUG
+class TestCellViewModel: TTVersatileTableViewCellViewModel {
+    override init(_ model: NSObject) {
+        super.init(model)
+        
+        titleRelay.accept("测试内容是\(arc4random()%100000)")
+    }
+}
+#endif

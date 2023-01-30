@@ -1,5 +1,5 @@
 //
-//  TTVersatileTableViewCellViewModel.swift
+//  TTVersatileCollectionViewCellViewModel.swift
 //  ActiveLabel
 //
 //  Created by hong on 2023/1/6.
@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 import UIKit
 
-open class TTVersatileTableViewCellViewModel:TTCollectionViewCellViewModel,TTVersatileListCellViewModelProtocol {
+open class TTVersatileCollectionViewCellViewModel:TTCollectionViewCellViewModel,TTVersatileListCellViewModelProtocol {
     public lazy var subTitleRelay: BehaviorRelay<String?> = {
         var subTitleRelay = BehaviorRelay<String?>.init(value: nil)
         return subTitleRelay
