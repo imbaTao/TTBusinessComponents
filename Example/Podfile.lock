@@ -1,10 +1,12 @@
 PODS:
   - ActiveLabel (1.1.0)
+  - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.10)
   - Kingfisher (6.3.1)
   - LookinServer (1.1.2):
     - LookinServer/Core (= 1.1.2)
   - LookinServer/Core (1.1.2)
+  - MJRefresh (3.7.5)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
   - ReachabilitySwift (5.0.0)
@@ -52,6 +54,8 @@ PODS:
     - RxSwift (= 6.5.0)
     - TTAssistKit/TTAssistCore
   - TTBusinessComponents (0.1.0):
+    - HandyJSON
+    - MJRefresh
     - TTBusinessComponents/TTActiveLabel (= 0.1.0)
     - TTBusinessComponents/TTAuthCodeInputBar (= 0.1.0)
     - TTBusinessComponents/TTAvatar (= 0.1.0)
@@ -61,18 +65,30 @@ PODS:
     - TTUIKit
   - TTBusinessComponents/TTActiveLabel (0.1.0):
     - ActiveLabel
+    - HandyJSON
+    - MJRefresh
     - TTUIKit
   - TTBusinessComponents/TTAuthCodeInputBar (0.1.0):
+    - HandyJSON
+    - MJRefresh
     - TTUIKit
   - TTBusinessComponents/TTAvatar (0.1.0):
+    - HandyJSON
     - Kingfisher
+    - MJRefresh
     - TTUIKit
   - TTBusinessComponents/TTCustomListView (0.1.0):
+    - HandyJSON
+    - MJRefresh
     - TTUIKit
     - TTUIKit/TTComponents/TTListView
   - TTBusinessComponents/TTStaticList (0.1.0):
+    - HandyJSON
+    - MJRefresh
     - TTUIKit
   - TTBusinessComponents/TTTabbar (0.1.0):
+    - HandyJSON
+    - MJRefresh
     - TTUIKit
     - TTUIKit/TTComponents/TTListView
   - TTUIKit (1.0.0):
@@ -200,9 +216,11 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ActiveLabel
+    - HandyJSON
     - IQKeyboardManagerSwift
     - Kingfisher
     - LookinServer
+    - MJRefresh
     - "NSObject+Rx"
     - ReachabilitySwift
     - RxCocoa
@@ -222,9 +240,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   LookinServer: bb667a77f1ee594a8e91226e729dbe49f3401f5c
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
@@ -234,7 +254,7 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   TTAssistKit: e08d942b137df0bdc50bf0a29105297a324ef683
-  TTBusinessComponents: 5509780e27ea3759815cf21bef910237d9d4381c
+  TTBusinessComponents: a089aa3bbad2403cce6bd50fde302530cfbc252d
   TTUIKit: fc0ec70410381fcf763e4fc17902db7724883fb1
 
 PODFILE CHECKSUM: 0c2906c188c0a1ad3c968f2680753617524c68f2

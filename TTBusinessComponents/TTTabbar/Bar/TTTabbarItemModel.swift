@@ -8,7 +8,7 @@
 import Foundation
 
 // 导航栏模型
-open class TTTabbarItemModel: NSObject,TTTabbarItemConfigProtocol {
+open class TTTabbarItemModel:NSObject, TTTabbarItemConfigProtocol {
     public var titleNormalFont: UIFont = TTTabbarItemConfig.basicConfig.titleNormalFont
     public var titleSelectedFont: UIFont = TTTabbarItemConfig.basicConfig.titleSelectedFont
     public var titleNormalColor: UIColor = TTTabbarItemConfig.basicConfig.titleNormalColor
@@ -36,10 +36,11 @@ open class TTTabbarItemModel: NSObject,TTTabbarItemConfigProtocol {
     }
     
     var selectStateChanged: ((_ isSelected: Bool) -> ())? = nil
-    public init(title: String,normalImage: UIImage,selectedImage: UIImage) {
-        super.init()
+    var controller: UIViewController!
+    public init(title: String,normalImage: UIImage,selectedImage: UIImage,controller: UIViewController) {
         self.title = title
         self.normalImage = normalImage
         self.selectedImage = selectedImage
+        self.controller = controller
     }
 }

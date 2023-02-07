@@ -9,16 +9,28 @@ import Foundation
 import RxSwift
 import RxRelay
 import RxCocoa
+import MJRefresh
+import HandyJSON
+
 
 open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnectionView,UICollectionViewDelegate,UICollectionViewDataSource {
 
-    
     // 数据源绑定
     public let items = BehaviorRelay<[TTCollectionViewCellViewModel]>.init(value: [])
     
     // 模型选中/未选中
     public let modelSelected = PublishSubject<TTCollectionViewCellViewModel>()
     public let modelDeselected = PublishSubject<TTCollectionViewCellViewModel>()
+    
+    
+    // 头部刷新信号
+    public let headerWillRefresh = PublishSubject<Void>()
+    
+    // 尾部刷新信号
+    public let footerWillRefresh = PublishSubject<Void>()
+    
+    // 数据页码
+    public private(set) var dataPageIndex = 0
     
     open override func setupUI() {
         config.cellTypes.append(T.self)
@@ -27,6 +39,8 @@ open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnection
         delegate = self
         dataSource = self
     }
+    
+
     
     open override func setupEvents() {
         super.setupEvents()
@@ -49,6 +63,16 @@ open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnection
         items.subscribe(onNext: {[weak self] (_) in guard let self = self else { return }
             self.reloadData()
         }).disposed(by: rx.disposeBag)
+    }
+    
+    
+    // event
+    open func headerAction() {
+        headerWillRefresh.onNext(())
+    }
+    
+    open func footerAction() {
+        footerWillRefresh.onNext(())
     }
     
     // MARK: - dataSource
@@ -96,28 +120,59 @@ open class TTSingleCellTypeCollectionView<T: TTCollectionViewCell>: TTConnection
 
 public extension TTSingleCellTypeCollectionView {
     #if DEBUG
-    func testData(_ data: [TTVersatileTableViewCellViewModel] = []) {
-        
-        if data.isEmpty {
-            let data = [
-                TestCellViewModel.init(.init()),
-                TestCellViewModel.init(.init()),
-                TestCellViewModel.init(.init())
-            ]
-            items.accept(data)
-        }else {
-            items.accept(data)
-        }
-  
-    }
+//    func testData(_ data: [TTVersatileCollectionViewCellViewModel] = []) {
+//        if data.isEmpty {
+//            let data = [
+//                TestCellViewModel.init(()),
+//                TestCellViewModel.init(.init()),
+//                TestCellViewModel.init(.init())
+//            ]
+//            items.accept(data)
+//        }else {
+//            items.accept(data)
+//        }
+//
+//    }
     #endif
+    
+    
+    func addHeader() {
+        mj_header = MJRefreshNormalHeader(refreshingBlock: {[weak self]  in guard let self = self else { return }
+            self.headerAction()
+        })
+    }
+    
+    /// to flag complete
+    func headerRefreshComplete(_ isError: Bool = false) {
+        if !isError {
+            dataPageIndex = 0
+        }
+        mj_header?.endRefreshing()
+    }
+    
+  
+    
+    func addFooter() {
+        mj_footer = MJRefreshAutoFooter(refreshingBlock: {[weak self]  in guard let self = self else { return }
+            self.footerAction()
+        })
+    }
+    
+    
+    func footerRefreshComplte(_ isError: Bool) {
+        if !isError {
+            dataPageIndex += 1
+        }
+    
+        mj_footer?.endRefreshing()
+    }
     
 }
 
 
 #if DEBUG
-class TestCellViewModel: TTVersatileTableViewCellViewModel {
-    override init(_ model: NSObject) {
+class TestCellViewModel: TTVersatileCollectionViewCellViewModel {
+    override init(_ model: HandyJSON) {
         super.init(model)
         
         titleRelay.accept("测试内容是\(arc4random()%100000)")

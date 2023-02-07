@@ -10,7 +10,7 @@ import RxSwift
 import RxRelay
 import UIKit
 
-open class TTVersatileTableViewCellViewModel:TTCollectionViewCellViewModel,TTVersatileListCellViewModelProtocol {
+open class TTVersatileTableViewCellViewModel:TTTableViewCellViewModel,TTVersatileListCellViewModelProtocol {
     public lazy var subTitleRelay: BehaviorRelay<String?> = {
         var subTitleRelay = BehaviorRelay<String?>.init(value: nil)
         return subTitleRelay

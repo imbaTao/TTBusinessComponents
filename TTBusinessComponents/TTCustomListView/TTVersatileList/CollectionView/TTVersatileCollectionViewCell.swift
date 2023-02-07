@@ -12,27 +12,27 @@ import TTUIKit
 
 open class TTVersatileCollectionViewCell : TTCollectionViewCell {
 
-    lazy var subTitleLabel: UILabel = {
+   public lazy var subTitleLabel: UILabel = {
         var subTitleLabel = UILabel.regular()
         return subTitleLabel
     }()
     
-    lazy var icon: UIImageView = {
+    public lazy var icon: UIImageView = {
         var icon = UIImageView.idle()
         return icon
     }()
     
-    lazy var subIcon: UIImageView = {
+    public lazy var subIcon: UIImageView = {
         var subIcon = UIImageView.idle()
         return subIcon
     }()
     
-    lazy var arrowIcon: UIImageView = {
+    public lazy var arrowIcon: UIImageView = {
         var arrowIcon = UIImageView.idle()
         return arrowIcon
     }()
     
-    lazy var avatar: TTAvatar = {
+    public lazy var avatar: TTAvatar = {
         var avatar = TTAvatar()
         return avatar
     }()

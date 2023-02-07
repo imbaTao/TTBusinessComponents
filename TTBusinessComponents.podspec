@@ -33,7 +33,9 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'TTBusinessComponents/TTBusinessComponents.swift'
   s.dependency "TTUIKit"
-
+  s.dependency "MJRefresh"
+  s.dependency "HandyJSON"
+  
   # avatar
   s.subspec 'TTAvatar' do |ss|
     ss.source_files = 'TTBusinessComponents/TTAvatar/**/*'

@@ -15,17 +15,15 @@ open class TTTabbarViewController: UITabBarController {
     // 自定义导航栏
     var myTabbar: TTTabbar?
     
-    public required init(_ itemModelsAndControllers: [TTTabbarItemModel : UIViewController],defaultSelectedIndex: Int = 0) {
+    public required init(_ itemModelsAndControllers: [TTTabbarItemModel],defaultSelectedIndex: Int = 0) {
         super.init(nibName: nil, bundle: nil)
-        guard itemModelsAndControllers.keys.count != 0 else {
+        guard itemModelsAndControllers.isNotEmpty else {
             assert(false,"TTTabbarViewController配置模型不能为空！")
         }
         
-        let viewControllers = itemModelsAndControllers.map({$0.value})
-        
-        let itemModels = itemModelsAndControllers.map{$0.key}
+        let viewControllers = itemModelsAndControllers.map({$0.controller!})
+        let itemModels = itemModelsAndControllers.map{$0}
         self.viewControllers = viewControllers
-       
         
         myTabbar = TTTabbar.init(items: itemModels.compactMap({ model in
             return .init(itemMoel: model)

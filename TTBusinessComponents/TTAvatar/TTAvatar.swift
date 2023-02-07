@@ -9,52 +9,56 @@ import Foundation
 import Kingfisher
 
 open class TTAvatar: UIImageView {
-    public struct Config {
+    open class Config: NSObject {
         public var avatarUrlPath: String?
         public var placeHolder: UIImage?
         public var cornerRadius: CGFloat = 0.0
         public var contentMode: UIView.ContentMode = .scaleAspectFill
-        public init(avatarUrlPath: String? = nil, placeHolder: UIImage? = nil, cornerRadius: CGFloat, contentMode: UIView.ContentMode) {
-            self.avatarUrlPath = avatarUrlPath
-            self.placeHolder = placeHolder
-            self.cornerRadius = cornerRadius
-            self.contentMode = contentMode
-        }
+        public var borderColor: UIColor?
+        public var borderWidth = CGFloat.onePixel
     }
-    
-//    private(set)
-    public var config = Config.init(cornerRadius: 0, contentMode: .scaleAspectFill) {
-        didSet {
-            print("我被变更了")
-        }
-    }
-    
-    public init(image: UIImage? = TTIcons.test(),configuration: ((inout TTAvatar.Config) -> ())? = nil,loadImageComplete: ((Int,String?,UIImage?) -> ())? = nil) {
-        super.init(image: image)
-        configuration?(&self.config)
-        setupUI()
-        
 
-        // if have url,then kingfisher request
-        if let avatarUrlPath = config.avatarUrlPath,let avatarUrl = URL(string: avatarUrlPath) {
-            
-            self.kf.setImage(with: avatarUrl, placeholder: config.placeHolder, options: nil) { result in
-                switch result {
-                case .success(let result):
-                    loadImageComplete?(0,"获取图片成功",result.image)
-                case .failure(let error):
-                    loadImageComplete?(error.errorCode,error.errorDescription,nil)
-                }
-            }
-            
-//            self.kf.setImage(with: avatarUrl, placeholder: config.placeHolder, options: nil) {
-//            }
-        }
+    public var config = Config()
+    public init(image: UIImage? = TTIcons.test(),configuration: ((TTAvatar.Config) -> ())? = nil) {
+        super.init(image: image)
+        configuration?(config)
+        setupUI()
     }
     
     func setupUI() {
         self.layer.masksToBounds = true
+        refreshConfig()
+    }
+    
+    // 刷新配置的时候重新加载UI
+    public func refreshConfig(_ configuration: ((TTAvatar.Config) -> ())? = nil) {
+        configuration?(config)
+        
+        // content
         contentMode = config.contentMode
+        
+        // border
+        if config.borderColor != nil {
+            borderColor = config.borderColor
+            borderWidth = config.borderWidth
+        }
+        
+        // avatar
+        loadRemoteImage(config.avatarUrlPath)
+    }
+    
+    public func loadRemoteImage(_ url: String?) {
+        guard let url = url,let avatarUrl = URL(string: url) else {
+            return
+        }
+        self.kf.setImage(with: avatarUrl, placeholder: config.placeHolder, options: nil) { result in
+//                switch result {
+//                case .success(let result):
+//                    loadImageComplete?(0,"获取图片成功",result.image)
+//                case .failure(let error):
+////                    loadImageComplete?(error.errorCode,error.errorDescription,nil)
+//                }
+        }
     }
     
 

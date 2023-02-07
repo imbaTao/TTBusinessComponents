@@ -33,13 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.makeKeyAndVisible()
         window!.backgroundColor = .white
  
-        let itemModels = [
-            TTTabbarItemModel(title: "首页",normalImage: TTIcons.test(),selectedImage: TTIcons.backArrowBlack()) : ViewController(),
-            TTTabbarItemModel(title: "中间",normalImage: TTIcons.test(),selectedImage: TTIcons.backArrowBlack()) : ViewController()
-        ]
+//        let itemModels = [
+////            TTTabbarItemModel(title: "首页",normalImage: TTIcons.test(),selectedImage: TTIcons.backArrowBlack(),controller: <#T##UIViewController#>),
+////            TTTabbarItemModel(title: "中间",normalImage: TTIcons.test(),selectedImage: TTIcons.backArrowBlack()) : ViewController()
+//        ]
 
-        let tabbarVC = TTTabbarViewController(itemModels)
-        window?.rootViewController = tabbarVC
+//        let tabbarVC = TTTabbarViewController(itemModels)
+//        window?.rootViewController = tabbarVC
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //            self.window?.rootViewController = UIViewController()
 //        }

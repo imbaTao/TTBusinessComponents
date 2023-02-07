@@ -81,3 +81,47 @@ open class TTSingleCellTypeTableView<T: TTTableViewCell>:TTTableView, UITableVie
 }
 
 
+public extension TTSingleCellTypeTableView {
+    func insertData(_ viewModel: TTVersatileTableViewCellViewModel,_ indexPath: IndexPath) {
+        if #available(iOS 11.0, *) {
+              performBatchUpdates({
+                  var data = items.value
+                  data.insert(viewModel, at: 0)
+                  items.accept(data)
+                  insertRows(at: [indexPath], with: .bottom)
+              }, completion: { [weak self]  (_) in guard let self = self else { return }
+                  self.reloadData();
+              })
+        } else {
+              // Fallback on earlier versions
+              beginUpdates();
+              insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
+              endUpdates();
+              reloadData();
+        }
+    }
+    
+    func insertData(_ viewModel: TTVersatileTableViewCellViewModel,_ indexPath: IndexPath,_ maxCount: Int) {
+        if #available(iOS 11.0, *) {
+              performBatchUpdates({
+                  var data = items.value
+                  data.insert(viewModel, at: indexPath.row)
+                  if data.count > maxCount {
+                      deleteRows(at: [.init(row: 0, section: 0)], with: .bottom)
+                      data = data.suffix(maxCount)
+                  }
+                  
+                  items.accept(data)
+                  insertRows(at: [indexPath], with: .bottom)
+              }, completion: { [weak self]  (_) in guard let self = self else { return }
+                  self.reloadData();
+              })
+        } else {
+              // Fallback on earlier versions
+              beginUpdates();
+              insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
+              endUpdates();
+              reloadData();
+        }
+    }
+}

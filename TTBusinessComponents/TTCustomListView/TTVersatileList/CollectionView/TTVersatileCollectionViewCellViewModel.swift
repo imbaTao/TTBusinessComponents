@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxRelay
 import UIKit
+import HandyJSON
 
 open class TTVersatileCollectionViewCellViewModel:TTCollectionViewCellViewModel,TTVersatileListCellViewModelProtocol {
     public lazy var subTitleRelay: BehaviorRelay<String?> = {
@@ -36,9 +37,9 @@ open class TTVersatileCollectionViewCellViewModel:TTCollectionViewCellViewModel,
         return isShowArrowIcon
     }()
     
-    public private(set) var model: NSObject!
+    public private(set) var model: HandyJSON!
     
-    public init(_ model: NSObject) {
+    public init(_ model: HandyJSON) {
         self.model = model
     }
 }
