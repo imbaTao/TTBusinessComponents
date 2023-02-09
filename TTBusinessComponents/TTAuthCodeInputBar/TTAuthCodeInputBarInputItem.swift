@@ -40,7 +40,7 @@ open class TTAuthCodeInputBarInputItem: TTControll {
         config.caretColor = .black
         config.textFont = .bold(30)
         config.textColor = .black
-        config.contentEdges = .init(top: 8, left: 0, bottom: 0, right: 0)
+        config.padding = .init(top: 8, left: 0, bottom: 0, right: 0)
         config.maxTextCount = 1
         config.filter = .onlyNumber
     }
