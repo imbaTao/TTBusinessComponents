@@ -1,5 +1,6 @@
 PODS:
   - ActiveLabel (1.1.0)
+  - Differentiator (5.0.0)
   - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.10)
   - Kingfisher (6.3.1)
@@ -13,6 +14,10 @@ PODS:
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxGesture (4.0.4):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
@@ -56,9 +61,11 @@ PODS:
   - TTBusinessComponents (0.1.0):
     - HandyJSON
     - MJRefresh
+    - RxDataSources
     - TTBusinessComponents/TTActiveLabel (= 0.1.0)
     - TTBusinessComponents/TTAuthCodeInputBar (= 0.1.0)
     - TTBusinessComponents/TTAvatar (= 0.1.0)
+    - TTBusinessComponents/TTBusinessCore (= 0.1.0)
     - TTBusinessComponents/TTCustomListView (= 0.1.0)
     - TTBusinessComponents/TTStaticList (= 0.1.0)
     - TTBusinessComponents/TTTabbar (= 0.1.0)
@@ -67,28 +74,39 @@ PODS:
     - ActiveLabel
     - HandyJSON
     - MJRefresh
+    - RxDataSources
     - TTUIKit
   - TTBusinessComponents/TTAuthCodeInputBar (0.1.0):
     - HandyJSON
     - MJRefresh
+    - RxDataSources
     - TTUIKit
   - TTBusinessComponents/TTAvatar (0.1.0):
     - HandyJSON
     - Kingfisher
     - MJRefresh
+    - RxDataSources
+    - TTUIKit
+  - TTBusinessComponents/TTBusinessCore (0.1.0):
+    - HandyJSON
+    - MJRefresh
+    - RxDataSources
     - TTUIKit
   - TTBusinessComponents/TTCustomListView (0.1.0):
     - HandyJSON
     - MJRefresh
+    - RxDataSources
     - TTUIKit
     - TTUIKit/TTComponents/TTListView
   - TTBusinessComponents/TTStaticList (0.1.0):
     - HandyJSON
     - MJRefresh
+    - RxDataSources
     - TTUIKit
   - TTBusinessComponents/TTTabbar (0.1.0):
     - HandyJSON
     - MJRefresh
+    - RxDataSources
     - TTUIKit
     - TTUIKit/TTComponents/TTListView
   - TTUIKit (1.0.0):
@@ -216,6 +234,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ActiveLabel
+    - Differentiator
     - HandyJSON
     - IQKeyboardManagerSwift
     - Kingfisher
@@ -224,6 +243,7 @@ SPEC REPOS:
     - "NSObject+Rx"
     - ReachabilitySwift
     - RxCocoa
+    - RxDataSources
     - RxGesture
     - RxOptional
     - RxRelay
@@ -240,6 +260,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
@@ -248,13 +269,14 @@ SPEC CHECKSUMS:
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxOptional: 3664964c96b69dd20c9cf78bdfe546615e26eca8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   TTAssistKit: e08d942b137df0bdc50bf0a29105297a324ef683
-  TTBusinessComponents: a089aa3bbad2403cce6bd50fde302530cfbc252d
+  TTBusinessComponents: 0c4dfc064d0cf2607824687bbfa0e5ce87f566d4
   TTUIKit: fc0ec70410381fcf763e4fc17902db7724883fb1
 
 PODFILE CHECKSUM: 0c2906c188c0a1ad3c968f2680753617524c68f2
