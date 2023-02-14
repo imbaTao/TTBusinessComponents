@@ -38,17 +38,18 @@ public extension TTBussinessListBasicViewController {
         }
 
         // 绑定刷新头事件
-       let requestResult = viewModel.bindRefreshHeaderTrigger(headerRefreshTrigger)
-        requestResult.subscribe(onNext: {[weak self] (requestDataSize) in guard let self = self else { return }
-            self.viewModel.refreshPageNumber = 0
-            if requestDataSize < self.viewModel.pageSize {
-                self.mainListView.mj_footer?.endRefreshingWithNoMoreData()
+        viewModel.bindRefreshHeaderTrigger(headerRefreshTrigger,refreshEndItemsCount: { [weak self] itemsCount in guard let self = self else { return }
+            if let itemsCount = itemsCount {
+                self.viewModel.refreshPageNumber = 0
+                if itemsCount < self.viewModel.pageSize {
+                    self.mainListView.mj_footer?.endRefreshingWithNoMoreData()
+                }
+                
+                self.mainListView.mj_header?.endRefreshing()
+            }else {
+                self.mainListView.mj_header?.endRefreshing()
             }
-            
-            self.mainListView.mj_header?.endRefreshing()
-        },onCompleted: {[weak self]  in guard let self = self else { return }
-            self.mainListView.mj_header?.endRefreshing()
-        }).disposed(by: rx.disposeBag)
+        })
     }
     
     /// 添加尾
@@ -64,17 +65,16 @@ public extension TTBussinessListBasicViewController {
         })
         
         // 绑定刷新头事件
-        let requestResult = viewModel.bindRefreshFooterTrigger(footerRefreshTrigger)
-        requestResult.subscribe(onNext: {[weak self] (requestDataSize) in guard let self = self else { return }
-            self.viewModel.refreshPageNumber += 1
-            
-            // 根据请求数据大小，决定刷新时机
-            if requestDataSize < self.viewModel.pageSize {
-                self.mainListView.mj_footer?.endRefreshing()
-                self.mainListView.mj_footer?.endRefreshingWithNoMoreData()
+        viewModel.bindRefreshFooterTrigger(headerRefreshTrigger,refreshEndItemsCount: { [weak self] itemsCount in guard let self = self else { return }
+            if let itemsCount = itemsCount {
+                self.viewModel.refreshPageNumber += 1
+                if itemsCount < self.viewModel.pageSize {
+                    self.mainListView.mj_footer?.endRefreshingWithNoMoreData()
+                }
+                self.mainListView.mj_header?.endRefreshing()
             }else {
-                self.mainListView.mj_footer?.endRefreshing()
+                self.mainListView.mj_header?.endRefreshing()
             }
-        }).disposed(by: rx.disposeBag)
+        })
     }
 }

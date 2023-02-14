@@ -24,12 +24,12 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     
     open override func setupUI() {
         super.setupUI()
-       let mainListView = TTConnectionView { config in
+       let mainListView = TTCollectionView { config in
             config.cellTypes = [TTBussinessCollectionViewCell.self]
         }
         mainListView.delegate = self
         mainListView.dataSource = self
-        addSubView(mainListView)
+        addSubview(mainListView)
         mainListView.snp.makeConstraints { (make) in
             make.edges.equalToSuperview()
         }
@@ -39,7 +39,7 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     open override func setupEvents() {
         super.setupEvents()
         viewModel.items.subscribe(onNext: {[weak self] (_) in guard let self = self else { return }
-            let mainView = self.mainListView as! TTConnectionView
+            let mainView = self.mainListView as! TTCollectionView
             mainView.reloadData()
         }).disposed(by: rx.disposeBag)
     }
@@ -55,7 +55,7 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let mainListView = collectionView as! TTConnectionView
+        let mainListView = collectionView as! TTCollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mainListView.config.cellTypes.first!.className, for: indexPath) as! TTBussinessCollectionViewCell
         cell.backgroundColor = .random
         let cellViewModel = viewModel.items.value[indexPath.row]

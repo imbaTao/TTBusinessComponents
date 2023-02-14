@@ -49,8 +49,6 @@ open class TTTabbarViewController: UITabBarController {
         }
         
         itemModels[defaultSelectedIndex].isSelcted = true
-       
-        
     }
     
     @objc func clickAction(_ sender: TTTabbarItem) {
