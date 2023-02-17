@@ -19,6 +19,7 @@ open class TTTabbarViewController: UITabBarController {
         super.init(nibName: nil, bundle: nil)
         guard itemModelsAndControllers.isNotEmpty else {
             assert(false,"TTTabbarViewController配置模型不能为空！")
+            return
         }
         
         let viewControllers = itemModelsAndControllers.map({$0.controller!})
@@ -55,15 +56,14 @@ open class TTTabbarViewController: UITabBarController {
         guard let myTabbar = myTabbar else {
             return
         }
-        var index = 0
         myTabbar.barStack.arrangedSubviews.forEach { item in
             let item = item as! TTTabbarItem
             if sender == item {
                 item.isSelected = true
+                self.selectedIndex = myTabbar.barStack.arrangedSubviews.firstIndex(of: item)!
             }else {
                 item.isSelected = false
             }
-            index += 1
         }
     }
     
