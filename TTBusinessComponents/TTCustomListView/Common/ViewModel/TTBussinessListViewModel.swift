@@ -23,6 +23,9 @@ open class TTBussinessListViewModel: TTViewModel{
     func bindRefreshHeaderTrigger(_ trigger: Observable<Void>,refreshEndItemsCount: @escaping(Int?) -> ()) {
         // 外部trigger是重复触发的
         Observable.merge(Observable<Void>.just(()),trigger).subscribe(onNext: {[weak self] (_) in
+            //
+            debugPrint("触发了刷新")
+            
             // 内部重发发送，防止报错终止
             _ = self?.headerRefreshRequest().subscribe(onNext: {[weak self] (refreshViewModels) in
                 refreshEndItemsCount(refreshViewModels.count)

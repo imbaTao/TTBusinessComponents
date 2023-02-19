@@ -37,12 +37,6 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         viewModel.items.asDriver(onErrorJustReturn: []).drive(onNext: {[weak self] (_) in guard let self = self else { return }
             self.mainListView.asTTTableView().reloadData()
         }).disposed(by: rx.disposeBag)
-        
-//        viewModel.items.asDriver(onErrorJustReturn: [])
-//            .drive((mainListView as! TTTableView).rx.items(cellIdentifier:TTBussinessTableViewCell.className, cellType: TTBussinessTableViewCell.self)) { tableView, viewModel, cell in
-//                cell.backgroundColor = .random
-//                cell.bind(to: viewModel)
-//            }.disposed(by: rx.disposeBag)
     }
     
     
@@ -67,7 +61,13 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         let mainListView = tableView.asTTTableView()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(mainListView.config.cellTypes.first!) as String, for: indexPath) as! TTBussinessTableViewCell
-        let cellViewModel = viewModel.items.value[indexPath.row]
+        
+        
+        let itemIndex = tableView.style == .plain ? indexPath.row : indexPath.section
+        let cellViewModel = viewModel.items.value[itemIndex]
+        
+        
+        
         cell.bind(to: cellViewModel)
         if cellViewModel.selecteStateRelay.value {
             tableView.selectRow(at: .init(row: indexPath.row, section: 0), animated: false, scrollPosition: .none)
@@ -81,8 +81,8 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         guard indexPath.row < viewModel.items.value.count else {
             return
         }
-
-        let cellViewModel = viewModel.items.value[indexPath.row]
+        let itemIndex = tableView.style == .plain ? indexPath.row : indexPath.section
+        let cellViewModel = viewModel.items.value[itemIndex]
         cellViewModel.selecteStateRelay.accept(false)
         viewModel.modelDeselectTrigger.onNext(cellViewModel)
     }
@@ -92,7 +92,8 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
             return
         }
 
-        let cellViewModel = viewModel.items.value[indexPath.row]
+        let itemIndex = tableView.style == .plain ? indexPath.row : indexPath.section
+        let cellViewModel = viewModel.items.value[itemIndex]
         cellViewModel.selecteStateRelay.accept(true)
         viewModel.modelSelectedTrigger.onNext(cellViewModel)
     }
@@ -136,32 +137,12 @@ public extension UIScrollView {
 
 
 public extension TTBussinessTableViewController {
-//    func insertData(_ cellViewModel: TTBussinessListCellViewModel,_ indexPath: IndexPath) {
-//        let mainListView = mainListView.asTTTableView()
-//        if #available(iOS 11.0, *) {
-//            mainListView.performBatchUpdates({
-//                var data = viewModel.items.value
-//                  data.insert(cellViewModel, at: 0)
-//                viewModel.items.accept(data)
-//                mainListView.insertRows(at: [indexPath], with: .bottom)
-//              }, completion: { [weak self]  (_) in guard let self = self else { return }
-//                  mainListView.reloadData();
-//              })
-//        } else {
-//              // Fallback on earlier versions
-//            mainListView.beginUpdates();
-//            mainListView.insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
-//            mainListView.endUpdates();
-//            mainListView.reloadData();
-//        }
-//    }
-
     func insertDataToLast(_ cellViewModel: TTBussinessListCellViewModel,_ maxCount: Int = .max) {
         let mainListView = mainListView.asTTTableView()
         let isPlainStyle = mainListView.style == .plain
-        var data = viewModel.items.value     
+        var data = viewModel.items.value
         data.append(cellViewModel)
-   
+        
         
         let insetIndexPath = [IndexPath.init(row: isPlainStyle ? data.maxIndex : 0, section: isPlainStyle ? 0 : data.maxIndex)]
         
@@ -170,69 +151,11 @@ public extension TTBussinessTableViewController {
         if overMaxCount {
             // 移除第一个数据源
             data.removeFirst()
-            
-//                if isPlainStyle {
-//                    mainListView.deleteRows(at: [.init(row: 0, section: 0)], with: .none)
-//                }else {
-//                    mainListView.deleteSections(IndexSet(integer: 0), with: .none)
-//                }
-//
-//
-//                if isPlainStyle {
-//                    mainListView.insertRows(at: insetIndexPath, with: .bottom)
-//                }else {
-//                    mainListView.insertSections(IndexSet(integer: data.maxIndex), with: .bottom)
-//                }
         }else {
-//                if isPlainStyle {
-//                    mainListView.insertRows(at: insetIndexPath, with: .bottom)
-//                }else {
-//                    mainListView.insertSections(IndexSet(integer: data.maxIndex), with: .bottom)
-//                }
+            
         }
         viewModel.items.accept(data)
-//        func disposeData() {
-//
-//        }
-        
-        // 末尾添加
-//        if #available(iOS 11.0, *) {
-//            mainListView.performBatchUpdates({
-//                disposeData()
-//              }, completion: { [weak self]  (_) in guard let self = self else { return }
-////                  mainListView.reloadData();
-//              })
-//        } else {
-//              // Fallback on earlier versions
-//            mainListView.beginUpdates();
-//            disposeData()
-//            mainListView.insertRows(at: insetIndexPath, with: UITableView.RowAnimation.bottom)
-//            mainListView.endUpdates();
-//            mainListView.reloadData();
-        }
-        
-        
-        
-//        if #available(iOS 11.0, *) {
-//              performBatchUpdates({
-//                  var data = items.value
-//                  data.insert(viewModel, at: indexPath.row)
-//                  if data.count > maxCount {
-//                      deleteRows(at: [.init(row: 0, section: 0)], with: .bottom)
-//                      data = data.suffix(maxCount)
-//                  }
-//
-//                  items.accept(data)
-//                  insertRows(at: [indexPath], with: .bottom)
-//              }, completion: { [weak self]  (_) in guard let self = self else { return }
-//                  self.reloadData();
-//              })
-//        } else {
-//              // Fallback on earlier versions
-//              beginUpdates();
-//              insertRows(at: [indexPath], with: UITableView.RowAnimation.bottom)
-//              endUpdates();
-//              reloadData();
-//        }
-//    }
+    }
+    
+    
 }

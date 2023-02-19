@@ -13,13 +13,13 @@ import MJRefresh
 
 open class TTBussinessListBasicViewController<T: TTBussinessListViewModel>:TTViewModelController<T> {
     public var mainListView: UIScrollView!
-    private lazy var headerRefreshTrigger: PublishSubject<Void> = {
-        var headerRefreshTrigger = PublishSubject<Void>()
+    private lazy var headerRefreshTrigger: BehaviorRelay<Void> = {
+        var headerRefreshTrigger = BehaviorRelay<Void>(value: ())
         return headerRefreshTrigger
     }()
     
-    private lazy var footerRefreshTrigger: PublishSubject<Void> = {
-        var footerRefreshTrigger = PublishSubject<Void>()
+    private lazy var footerRefreshTrigger: BehaviorRelay<Void> = {
+        var footerRefreshTrigger = BehaviorRelay<Void>(value: ())
         return footerRefreshTrigger
     }()
 }
@@ -34,11 +34,11 @@ public extension TTBussinessListBasicViewController {
 
         // 设置头
         mainListView.mj_header = MJRefreshNormalHeader {[weak self]  in guard let self = self else { return }
-            self.headerRefreshTrigger.onNext(())
+            self.headerRefreshTrigger.accept(())
         }
 
         // 绑定刷新头事件
-        viewModel.bindRefreshHeaderTrigger(headerRefreshTrigger,refreshEndItemsCount: { [weak self] itemsCount in guard let self = self else { return }
+        viewModel.bindRefreshHeaderTrigger(headerRefreshTrigger.asObservable(),refreshEndItemsCount: { [weak self] itemsCount in guard let self = self else { return }
             if let itemsCount = itemsCount {
                 self.viewModel.refreshPageNumber = 0
                 if itemsCount < self.viewModel.pageSize {
@@ -61,11 +61,11 @@ public extension TTBussinessListBasicViewController {
         }
         // 设置头
         mainListView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: {[weak self]  in guard let self = self else { return }
-            self.footerRefreshTrigger.onNext(())
+            self.footerRefreshTrigger.accept(())
         })
         
         // 绑定刷新头事件
-        viewModel.bindRefreshFooterTrigger(headerRefreshTrigger,refreshEndItemsCount: { [weak self] itemsCount in guard let self = self else { return }
+        viewModel.bindRefreshFooterTrigger(footerRefreshTrigger.asObservable(),refreshEndItemsCount: { [weak self] itemsCount in guard let self = self else { return }
             if let itemsCount = itemsCount {
                 self.viewModel.refreshPageNumber += 1
                 if itemsCount < self.viewModel.pageSize {

@@ -26,11 +26,3 @@ public extension TTBussinessListCellProtocol {
         self.cellDisposeBag = DisposeBag()
     }
 }
-
-public protocol TTBussinessListCellViewModelProtocol {
-    var subTitleRelay: RxRelay.BehaviorRelay<String?> { get set }
-    var iconRelay: RxRelay.BehaviorRelay<UIImage?> { get set }
-    var subIconRelay: RxRelay.BehaviorRelay<UIImage?> { get set }
-    var avatarUrlRelay: RxRelay.BehaviorRelay<String?> { get set }
-    var isShowArrowIcon: RxRelay.BehaviorRelay<Bool?> { get set }
-}

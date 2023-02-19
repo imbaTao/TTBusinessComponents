@@ -41,9 +41,26 @@ open class TTBussinessCollectionViewCell: TTCollectionViewCell,TTBussinessListCe
     }
     
     open func bind(to viewModel: TTBussinessListCellViewModel) {
-        //f 每次绑定，释放上一次绑定
         cellDisposeBag = DisposeBag()
-        viewModel.titleRelay.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag);
+        viewModel.titleRelay.filterNil().bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
+        viewModel.subTitleRelay.filterNil().bind(to: subTitleLabel.rx.text).disposed(by: cellDisposeBag)
+        
+        // 主图
+        viewModel.iconRelay.filterNil().bind(to: icon.rx.image).disposed(by: cellDisposeBag)
+        viewModel.iconUrlRelay.filterNil().map({ urlStr in
+            return (nil,urlStr)
+        }).bind(to: icon.rx.urlImage).disposed(by: cellDisposeBag)
+        
+        // 子图片
+        viewModel.subIconRelay.filterNil().bind(to: subIcon.rx.image).disposed(by: cellDisposeBag)
+        viewModel.subIconUrlRelay.filterNil().map({ urlStr in
+            return (nil,urlStr)
+        }).bind(to: subIcon.rx.urlImage).disposed(by: cellDisposeBag)
+        
+        // 头像
+        viewModel.avatarUrlRelay.filterNil().map({ urlStr in
+            return (nil,urlStr)
+        }).bind(to: avatar.rx.urlImage).disposed(by: cellDisposeBag)
     }
 }
 

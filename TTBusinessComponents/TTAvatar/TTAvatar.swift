@@ -7,17 +7,20 @@
 
 import Foundation
 import Kingfisher
+import RxSwift
 
 open class TTAvatar: UIImageView {
     open class Config: NSObject {
         public var avatarUrlPath: String?
-        public var placeHolder: UIImage?
+        public var placeHolder: UIImage = TTAvatar.globalPlaceHolder
         public var cornerRadius: CGFloat = 0.0
         public var contentMode: UIView.ContentMode = .scaleAspectFill
         public var borderColor: UIColor?
         public var borderWidth = CGFloat.onePixel
     }
-
+    
+    // 默认全局占位图片
+    static var globalPlaceHolder = TTIcons.test()
     public var config = Config()
     public init(image: UIImage? = TTIcons.test(),configuration: ((TTAvatar.Config) -> ())? = nil) {
         super.init(image: image)
@@ -84,3 +87,18 @@ open class TTAvatar: UIImageView {
     }
 }
 
+extension Reactive where Base: UIImageView {
+    var urlImage: Binder<(UIImage?,String)> {
+        return Binder(
+            self.base) { base,tuple in
+                let placeholderImage = tuple.0
+                let avatarUrl = URL.init(string: tuple.1)
+                base.kf.setImage(
+                    with: avatarUrl,
+                    placeholder: placeholderImage,
+                    options: [],
+                    progressBlock: nil,
+                    completionHandler: { (result) in })
+            }
+    }
+}
