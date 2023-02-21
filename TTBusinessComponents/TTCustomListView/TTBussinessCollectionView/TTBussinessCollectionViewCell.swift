@@ -8,8 +8,14 @@
 import Foundation
 import RxSwift
 
-open class TTBussinessCollectionViewCell: TTCollectionViewCell,TTBussinessListCellProtocol {
+
+open class TTBussinessCollectionViewCell: TTCollectionViewCell,TTBussinessBasicComponentsProtocol,TTBussinessListCellProtocol {
     public var cellDisposeBag = DisposeBag()
+    public lazy var titleLabel: UILabel = {
+        var titleLabel = UILabel.regular(size: 16, textColor: .black0, text: "", alignment: .left)
+        return titleLabel
+    }()
+    
     public lazy var subTitleLabel: UILabel = {
          var subTitleLabel = UILabel.regular()
          return subTitleLabel
@@ -34,6 +40,11 @@ open class TTBussinessCollectionViewCell: TTCollectionViewCell,TTBussinessListCe
          var avatar = TTAvatar()
          return avatar
      }()
+    
+    public lazy var segementLine: UIView = {
+        let segementLine = UIView.colorView(rgba(223, 223, 223, 0.5))
+        return segementLine
+    }()
     
     open override func prepareForReuse() {
         super.prepareForReuse()

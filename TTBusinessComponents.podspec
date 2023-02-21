@@ -79,5 +79,12 @@ TODO: Add long description of the pod here.
   end
   
   
+  # staticList
+  s.subspec 'TTStaticList' do |ss|
+   ss.source_files = 'TTBusinessComponents/TTStaticList/**/*'
+  end
+ 
+ 
+  
 
 end
