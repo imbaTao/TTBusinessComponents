@@ -83,6 +83,7 @@ open class TTAuthCodeInputBarInputItem: TTControll {
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 if let content = content,content.isNotEmpty,let _ = content.int  {
                     if hasOldContent == false {
+                        self.inputTF.text = content
                         self.changeState(.complte)
                     }
                 }

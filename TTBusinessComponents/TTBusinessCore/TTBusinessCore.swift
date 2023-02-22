@@ -17,7 +17,7 @@ private struct TTBussinessBasicComponentsExtensionKeys {
     static var segementLine = "segementLine"
 }
 
-public protocol TTBussinessBasicComponentsProtocol where Self: UIView  {
+public protocol TTBussinessBasicComponentsProtocol: NSObject  {
     var titleLabel: UILabel {set get}
     var subTitleLabel: UILabel {set get}
     var icon: UIImageView {set get}

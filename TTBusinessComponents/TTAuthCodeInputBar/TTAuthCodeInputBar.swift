@@ -44,7 +44,7 @@ open class TTAuthCodeInputBar<T: TTAuthCodeInputBarInputItem>: TTStackView {
             item.inputStateDidChange = { [weak self] inputState in guard let self = self else { return }
                 switch inputState {
                 case .complte:
-                    self.switchNextInputItem()
+                    self.switchNextInputItem(item)
                 default:
                     break
                 }
@@ -72,13 +72,13 @@ open class TTAuthCodeInputBar<T: TTAuthCodeInputBarInputItem>: TTStackView {
     }
     
     // 切换下一个
-    func switchNextInputItem() {
+    func switchNextInputItem(_ beforeItem: TTAuthCodeInputBarInputItem) {
         guard let currentItem = fetchCurrentInputItem() else {
             return
         }
         
         // isLastItem
-        if currentItem.index == arrangedSubviews.maxIndex {
+        if beforeItem.index == arrangedSubviews.maxIndex {
             // 输入完成
             inputComplete?(content)
         }else {
