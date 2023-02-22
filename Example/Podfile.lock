@@ -1,5 +1,6 @@
 PODS:
   - ActiveLabel (1.1.0)
+  - FDFullscreenPopGesture (1.1)
   - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.10)
   - Kingfisher (6.3.1)
@@ -32,6 +33,7 @@ PODS:
     - TTAssistKit/TTAssistCore (= 0.1.0)
     - TTAssistKit/TTAuthorizer (= 0.1.0)
     - TTAssistKit/TTDevice (= 0.1.0)
+    - TTAssistKit/TTKeyboard (= 0.1.0)
     - TTAssistKit/TTNetObserver (= 0.1.0)
   - TTAssistKit/TTAssistCore (0.1.0):
     - "NSObject+Rx (= 5.2.2)"
@@ -46,6 +48,12 @@ PODS:
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
   - TTAssistKit/TTDevice (0.1.0):
+    - "NSObject+Rx (= 5.2.2)"
+    - RxCocoa (= 6.5.0)
+    - RxOptional (= 5.0.2)
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - TTAssistKit/TTKeyboard (0.1.0):
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxOptional (= 5.0.2)
@@ -102,6 +110,7 @@ PODS:
     - TTUIKit
     - TTUIKit/TTComponents/TTListView
   - TTUIKit (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -114,6 +123,7 @@ PODS:
     - TTUIKit/TTExtension (= 1.0.0)
     - TTUIKit/TTIcons (= 1.0.0)
   - TTUIKit/TTAutoSizeView (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -123,6 +133,7 @@ PODS:
     - TTUIKit/TTCore
     - TTUIKit/TTExtension
   - TTUIKit/TTComponents (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -138,6 +149,7 @@ PODS:
     - TTUIKit/TTExtension
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTAlert (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -151,6 +163,7 @@ PODS:
     - TTUIKit/TTExtension
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTButton (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -162,6 +175,7 @@ PODS:
     - TTUIKit/TTExtension
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTListView (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -173,6 +187,7 @@ PODS:
     - TTUIKit/TTExtension
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTTextInput (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -183,6 +198,7 @@ PODS:
     - TTUIKit/TTExtension
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTToast (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -193,6 +209,7 @@ PODS:
     - TTUIKit/TTExtension
     - TTUIKit/TTIcons
   - TTUIKit/TTCore (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -201,6 +218,7 @@ PODS:
     - RxSwift (= 6.5.0)
     - SnapKit (= 5.6.0)
   - TTUIKit/TTExtension (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -209,6 +227,7 @@ PODS:
     - RxSwift (= 6.5.0)
     - TTUIKit/TTCore
   - TTUIKit/TTIcons (1.0.0):
+    - FDFullscreenPopGesture
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -226,6 +245,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ActiveLabel
+    - FDFullscreenPopGesture
     - HandyJSON
     - IQKeyboardManagerSwift
     - Kingfisher
@@ -250,6 +270,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ActiveLabel: 5e3f4de79a1952d4604b845a0610d4776e4b82b3
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
@@ -263,9 +284,9 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
-  TTAssistKit: 2fee0647b2263547242d0d582f45c0d5e664d619
-  TTBusinessComponents: ad5aad192e37d0cabe0db3312500d577e4dce6df
-  TTUIKit: fc0ec70410381fcf763e4fc17902db7724883fb1
+  TTAssistKit: df972e3854792855874159ff79bfb94572a53d51
+  TTBusinessComponents: d9f97b287ea70b9b10da6e45dcbd89e9d337b6a0
+  TTUIKit: f2c08e52ef91e5731ead5afdc1114ee505ae37fe
 
 PODFILE CHECKSUM: 0c2906c188c0a1ad3c968f2680753617524c68f2
 
