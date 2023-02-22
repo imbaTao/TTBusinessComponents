@@ -9,46 +9,11 @@ import Foundation
 import RxSwift
 
 
-open class TTBussinessCollectionViewCell: TTCollectionViewCell,TTBussinessBasicComponentsProtocol,TTBussinessListCellProtocol {
+open class TTBussinessCollectionViewCell: TTCollectionViewCell,TTBussinessBasicComponentsProtocol {
     public var cellDisposeBag = DisposeBag()
-    public lazy var titleLabel: UILabel = {
-        var titleLabel = UILabel.regular(size: 16, textColor: .black0, text: "", alignment: .left)
-        return titleLabel
-    }()
-    
-    public lazy var subTitleLabel: UILabel = {
-         var subTitleLabel = UILabel.regular()
-         return subTitleLabel
-     }()
-     
-     public lazy var icon: UIImageView = {
-         var icon = UIImageView.idle()
-         return icon
-     }()
-     
-     public lazy var subIcon: UIImageView = {
-         var subIcon = UIImageView.idle()
-         return subIcon
-     }()
-     
-     public lazy var arrowIcon: UIImageView = {
-         var arrowIcon = UIImageView.idle()
-         return arrowIcon
-     }()
-     
-     public lazy var avatar: TTAvatar = {
-         var avatar = TTAvatar()
-         return avatar
-     }()
-    
-    public lazy var segementLine: UIView = {
-        let segementLine = UIView.colorView(rgba(223, 223, 223, 0.5))
-        return segementLine
-    }()
-    
     open override func prepareForReuse() {
         super.prepareForReuse()
-        recycleRxDisposeBag()
+        cellDisposeBag = DisposeBag()
     }
     
     open func bind(to viewModel: TTBussinessListCellViewModel) {

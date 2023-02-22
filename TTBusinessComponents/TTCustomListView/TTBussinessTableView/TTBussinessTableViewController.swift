@@ -8,7 +8,6 @@
 import Foundation
 
 open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussinessListBasicViewController<T>,UITableViewDelegate,UITableViewDataSource{
-    
     open override func setupUI() {
         super.setupUI()
         let mainListView = TTTableView { config in
@@ -24,6 +23,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         }
     }
     
+    /// 替换主列表
     public func replaceMainList(_ newList: TTTableView) {
         newList.delegate = self
         newList.dataSource = self
