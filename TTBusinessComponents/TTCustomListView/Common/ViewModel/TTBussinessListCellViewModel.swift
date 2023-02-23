@@ -22,7 +22,7 @@ public protocol TTBussinessListCellViewModelProtocol {
 }
 
 
-open class TTBussinessListCellViewModel: NSObject,TTBussinessListCellViewModelProtocol {
+open class TTBussinessListCellViewModel: TTViewModel,TTBussinessListCellViewModelProtocol {
     public lazy var titleRelay: BehaviorRelay<String?> = {
         var titleRelay = BehaviorRelay<String?>.init(value: nil)
         return titleRelay
@@ -67,19 +67,7 @@ open class TTBussinessListCellViewModel: NSObject,TTBussinessListCellViewModelPr
         var isShowArrowIcon = BehaviorRelay<Bool?>.init(value: nil)
         return isShowArrowIcon
     }()
-   
-    
 
-    public var model: Any
-    public init(_ model: Any) {
-        self.model = model
-        super.init()
-        bindCellViewModel(model)
-    }
-    
-    open func bindCellViewModel(_ model: Any) {
-        
-    }
 }
 
 

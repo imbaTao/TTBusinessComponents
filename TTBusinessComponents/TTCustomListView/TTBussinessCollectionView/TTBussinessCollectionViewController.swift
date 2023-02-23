@@ -22,18 +22,26 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         return fooerRefreshTrigger
     }()
     
+    
+    public override init(_ viewModel: T = .init()) {
+        super.init()
+        let mainListView = TTCollectionView { config in
+             config.cellTypes = [TTBussinessCollectionViewCell.self]
+         }
+         mainListView.delegate = self
+         mainListView.dataSource = self
+         self.mainListView = mainListView
+         addSubview(mainListView)
+         mainListView.snp.makeConstraints { (make) in
+             make.edges.equalToSuperview()
+         }
+     
+    }
+    
+
     open override func setupUI() {
         super.setupUI()
-       let mainListView = TTCollectionView { config in
-            config.cellTypes = [TTBussinessCollectionViewCell.self]
-        }
-        mainListView.delegate = self
-        mainListView.dataSource = self
-        addSubview(mainListView)
-        mainListView.snp.makeConstraints { (make) in
-            make.edges.equalToSuperview()
-        }
-        self.mainListView = mainListView
+      
     }
     
     open override func setupEvents() {
@@ -88,6 +96,11 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         cellViewModel.selecteStateRelay.accept(false)
         viewModel.modelDeselectTrigger.onNext(cellViewModel)
     }
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
 }
 
 

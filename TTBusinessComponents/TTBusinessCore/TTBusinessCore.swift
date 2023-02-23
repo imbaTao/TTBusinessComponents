@@ -13,6 +13,8 @@ private struct TTBussinessBasicComponentsExtensionKeys {
     static var subTitleLabel = "subTitleLabel"
     static var icon = "icon"
     static var subIcon = "subIcon"
+    static var mainButton = "mainButton"
+    static var subButton = "subButton"
     static var avatar = "avatar"
     static var segementLine = "segementLine"
 }
@@ -22,6 +24,8 @@ public protocol TTBussinessBasicComponentsProtocol: NSObject  {
     var subTitleLabel: UILabel {set get}
     var icon: UIImageView {set get}
     var subIcon: UIImageView {set get}
+    var mainButton: TTButton{set get}
+    var subButton: TTButton{set get}
     var avatar: TTAvatar {set get}
     var segementLine: UIView {set get}
 }
@@ -114,6 +118,36 @@ public extension TTBussinessBasicComponentsProtocol {
            }
            set {
                assosicatedObjectSetMethod(key: &TTBussinessBasicComponentsExtensionKeys.segementLine, newValue: newValue)
+           }
+    }
+    
+    var mainButton: TTButton {
+           get {
+               if let oldValue = assosicatedObjectGetMethod(key: &TTBussinessBasicComponentsExtensionKeys.mainButton, TTButton.self) {
+                   return oldValue
+               } else {
+                   let newValue = TTButton()
+                   assosicatedObjectSetMethod(key: &TTBussinessBasicComponentsExtensionKeys.mainButton, newValue: newValue)
+                   return newValue
+               }
+           }
+           set {
+               assosicatedObjectSetMethod(key: &TTBussinessBasicComponentsExtensionKeys.mainButton, newValue: newValue)
+           }
+    }
+    
+    var subButton: TTButton {
+           get {
+               if let oldValue = assosicatedObjectGetMethod(key: &TTBussinessBasicComponentsExtensionKeys.subButton, TTButton.self) {
+                   return oldValue
+               } else {
+                   let newValue = TTButton()
+                   assosicatedObjectSetMethod(key: &TTBussinessBasicComponentsExtensionKeys.subButton, newValue: newValue)
+                   return newValue
+               }
+           }
+           set {
+               assosicatedObjectSetMethod(key: &TTBussinessBasicComponentsExtensionKeys.subButton, newValue: newValue)
            }
     }
 }
