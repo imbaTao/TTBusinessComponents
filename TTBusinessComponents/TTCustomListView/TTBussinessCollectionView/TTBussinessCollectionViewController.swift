@@ -25,6 +25,13 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     
     public override init(_ viewModel: T = .init()) {
         super.init()
+    
+     
+    }
+    
+
+    open override func setupUI() {
+        super.setupUI()
         let mainListView = TTCollectionView { config in
              config.cellTypes = [TTBussinessCollectionViewCell.self]
          }
@@ -35,13 +42,6 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
          mainListView.snp.makeConstraints { (make) in
              make.edges.equalToSuperview()
          }
-     
-    }
-    
-
-    open override func setupUI() {
-        super.setupUI()
-      
     }
     
     open override func setupEvents() {
