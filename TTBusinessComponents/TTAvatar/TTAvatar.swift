@@ -50,8 +50,8 @@ open class TTAvatar: UIImageView {
         loadRemoteImage(config.avatarUrlPath)
     }
     
-    public func loadRemoteImage(_ url: String?) {
-        guard let url = url,let avatarUrl = URL(string: url) else {
+    public func loadRemoteImage(_ urlStr: String?) {
+        guard  let urlStr = urlStr,urlStr.count > 0,let avatarUrl = URL(string: urlStr) else {
             return
         }
         self.kf.setImage(with: avatarUrl, placeholder: config.placeHolder, options: nil) { result in
