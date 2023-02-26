@@ -25,6 +25,12 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
     
     /// 替换主列表
     public func replaceMainList(_ newList: TTTableView) {
+        let oldList =  mainListView.asTTTableView()
+        oldList.delegate = nil
+        oldList.dataSource = nil
+        oldList.removeFromSuperview()
+        
+        
         newList.delegate = self
         newList.dataSource = self
         mainListView = newList
@@ -41,7 +47,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
     
     
     // MARK: - dataSource
-    public func numberOfSections(in tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         if mainListView.asTTTableView().style == .plain {
             return 1
         }else {
@@ -49,7 +55,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         }
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if mainListView.asTTTableView().style == .plain {
             return viewModel.items.value.count
         }else {
@@ -57,7 +63,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         }
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let mainListView = tableView.asTTTableView()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(mainListView.config.cellTypes.first!) as String, for: indexPath) as! TTBussinessTableViewCell
@@ -77,7 +83,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
   
     
     // MARK: - delegate
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row < viewModel.items.value.count else {
             return
         }

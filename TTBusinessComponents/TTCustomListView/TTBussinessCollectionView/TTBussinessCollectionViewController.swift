@@ -54,18 +54,17 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     
     
     // MARK: - dataSource
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.items.value.count
     }
     
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let mainListView = collectionView as! TTCollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mainListView.config.cellTypes.first!.className, for: indexPath) as! TTBussinessCollectionViewCell
-        cell.backgroundColor = .random
         let cellViewModel = viewModel.items.value[indexPath.row]
         cell.bind(to: cellViewModel)
         
@@ -77,7 +76,7 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     }
     
     
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row < viewModel.items.value.count else {
             return
         }
@@ -87,7 +86,7 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         viewModel.modelSelectedTrigger.onNext(cellViewModel)
     }
     
-    public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard indexPath.row < viewModel.items.value.count else {
             return
         }
