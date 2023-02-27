@@ -66,11 +66,6 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: mainListView.config.cellTypes.first!.className, for: indexPath) as! TTBussinessCollectionViewCell
         let cellViewModel = viewModel.items.value[indexPath.row]
         cell.bind(to: cellViewModel)
-        
-        // 选中状态变更
-        if cellViewModel.selecteStateRelay.value {
-            collectionView.selectItem(at: .init(row: indexPath.row, section: 0), animated: false, scrollPosition: .bottom)
-        }
         return cell
     }
     
@@ -79,7 +74,8 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         guard indexPath.row < viewModel.items.value.count else {
             return
         }
-
+        // 选中效果
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .bottom)
         let cellViewModel = viewModel.items.value[indexPath.row]
         cellViewModel.selecteStateRelay.accept(true)
         viewModel.modelSelectedTrigger.onNext(cellViewModel)
@@ -95,14 +91,30 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         viewModel.modelDeselectTrigger.onNext(cellViewModel)
     }
     
+    
+    
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
 }
+extension CATransaction {
 
+    static func disableAnimations(_ completion: () -> Void) {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        completion()
+        CATransaction.commit()
+    }
 
+}
 
+public extension TTBussinessCollectionController {
+    func selectedIndexPath(_ row: Int) {
+//        // 选中状态变更
+//        collectionView.selectItem(at: .init(row: indexPath.row, section: 0), animated: false, scrollPosition: .centeredHorizontally)
+    }
+}
 
 
 //extension TTBussinessTableViewController: UITableViewDelegate,UITableViewDataSource {
