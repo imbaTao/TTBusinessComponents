@@ -22,9 +22,20 @@ open class TTBussinessListBasicViewController<T: TTBussinessListViewModel>:TTVie
         var footerRefreshTrigger = BehaviorRelay<Void>(value: ())
         return footerRefreshTrigger
     }()
+    
+    // Use a button to Tips,whoooo!
+    private lazy var emptyTipsView: TTButton = {
+        var emptyTipsView = TTButton { config in
+            config.type = .iconOnTheTop
+            config.interval = 12
+            config.titleFonts = [.normal : .medium(14)]
+            config.titleColors = [.normal : .gray102]
+        }
+        return emptyTipsView
+    }()
 }
 
-/// Method
+// MARK: - header & footer
 public extension TTBussinessListBasicViewController {
     /// 添加头
     func addRefreshHeader() {
@@ -76,5 +87,47 @@ public extension TTBussinessListBasicViewController {
                 self.mainListView.mj_header?.endRefreshing()
             }
         })
+    }
+}
+
+// MARK: - emptyTipsView
+public extension TTBussinessListBasicViewController {
+    // 添加控提示
+    func addEmtyTips(_ configBlock: (_ config: TTButtonConfig) -> (),_ selection: (() -> ())? = nil) {
+        if emptyTipsView.superview == nil {
+            mainListView.addSubview(emptyTipsView)
+            
+            // bind
+            viewModel.items.skip(1).map{$0.count > 0}.bind(to: emptyTipsView.rx.isHidden).disposed(by: rx.disposeBag)
+            
+            // update
+            emptyTipsView.updateConfig(configBlock)
+            
+            // 设置约束
+            emptyTipsView.snp.makeConstraints { (make) in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview().offset(0)
+            }
+            
+            emptyTipsView.rx.controlEvent(.touchUpInside).subscribe(onNext: {[weak self] (_) in guard let self = self else { return }
+                selection?()
+            }).disposed(by: rx.disposeBag)
+        }
+    }
+    
+    // 移除控件
+    func removeEmptyTips() {
+        emptyTipsView.removeFromSuperview()
+    }
+    
+    /// 设置纵向水平更新
+    func setEmptyViewVerticalOffSet(_ offset: CGFloat) {
+        guard emptyTipsView.superview != nil else {
+           return
+        }
+        
+        emptyTipsView.snp.updateConstraints { (make) in
+            make.centerY.equalToSuperview().offset(offset)
+        }
     }
 }

@@ -25,8 +25,7 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
     
     public override init(_ viewModel: T = .init()) {
         super.init()
-    
-     
+        
     }
     
 
