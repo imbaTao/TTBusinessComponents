@@ -9,7 +9,7 @@ import Foundation
 import Kingfisher
 import RxSwift
 
-open class TTAvatar: UIImageView {
+open class TTAvatar: TTControll {
     open class Config: NSObject {
         public var avatarUrlPath: String?
         public var placeHolder: UIImage = TTAvatar.globalPlaceHolder
@@ -17,20 +17,32 @@ open class TTAvatar: UIImageView {
         public var contentMode: UIView.ContentMode = .scaleAspectFill
         public var borderColor: UIColor?
         public var borderWidth = CGFloat.onePixel
+        public var userEnable = false
     }
     
     // 默认全局占位图片
     static var globalPlaceHolder = TTIcons.test()
     public var config = Config()
+    public let icon = UIImageView()
+    
     public init(image: UIImage? = TTIcons.test(),configuration: ((TTAvatar.Config) -> ())? = nil) {
-        super.init(image: image)
+        super.init(frame: .zero)
+        icon.image = image
         configuration?(config)
         setupUI()
     }
     
-    func setupUI() {
-        self.layer.masksToBounds = true
+    open override func setupUI() {
+        addSubviews([icon])
+        
+        // config
+        layer.masksToBounds = true
         updateConfig()
+        
+        // layout
+        icon.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     // 刷新配置的时候重新加载UI
@@ -46,8 +58,11 @@ open class TTAvatar: UIImageView {
             borderWidth = config.borderWidth
         }
         
+        // 是否可点击
+//        icon.isUserInteractionEnabled = config.userEnable
+        
         // avatar
-        loadRemoteImage(config.avatarUrlPath,config.placeHolder)
+        icon.loadRemoteImage(config.avatarUrlPath,config.placeHolder)
     }
     
     open override func layoutSublayers(of layer: CALayer) {
@@ -66,6 +81,10 @@ open class TTAvatar: UIImageView {
         }
     }
     
+    // 加载远端图片
+   public func loadRemoteImage(_ urlStr: String?,_ placeHolder: UIImage? = nil) {
+        icon.loadRemoteImage(urlStr,placeHolder)
+    }
    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
