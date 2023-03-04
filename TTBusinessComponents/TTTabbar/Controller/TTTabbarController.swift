@@ -13,7 +13,7 @@ open class TTTabbarViewController: UITabBarController {
     var tabbarItemSelectedBlock: ((Int,TTTabbarItem) -> ())? = nil
     
     // 自定义导航栏
-    var myTabbar: TTTabbar?
+   public var myTabbar: TTTabbar?
     
     public required init(_ itemModelsAndControllers: [TTTabbarItemModel],defaultSelectedIndex: Int = 0) {
         super.init(nibName: nil, bundle: nil)
@@ -28,7 +28,7 @@ open class TTTabbarViewController: UITabBarController {
         
         myTabbar = TTTabbar.init(items: itemModels.compactMap({ model in
             return .init(itemMoel: model)
-        }))
+        }),hasSegementLine: false)
         
         myTabbar?.barStack.arrangedSubviews.forEach { barItem in
             let item = barItem as! TTTabbarItem
@@ -74,6 +74,7 @@ open class TTTabbarViewController: UITabBarController {
     
     public override func viewWillLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         // 把图层移到最上层,否则会被系统层的UITabbarButton挡住
         if let tabbar = myTabbar {
             tabbar.bringSubviewToFront(tabbar.barContainer)

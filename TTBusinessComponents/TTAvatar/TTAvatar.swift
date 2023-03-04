@@ -30,11 +30,11 @@ open class TTAvatar: UIImageView {
     
     func setupUI() {
         self.layer.masksToBounds = true
-        refreshConfig()
+        updateConfig()
     }
     
     // 刷新配置的时候重新加载UI
-    public func refreshConfig(_ configuration: ((TTAvatar.Config) -> ())? = nil) {
+    public func updateConfig(_ configuration: ((TTAvatar.Config) -> ())? = nil) {
         configuration?(config)
         
         // content
@@ -47,25 +47,9 @@ open class TTAvatar: UIImageView {
         }
         
         // avatar
-        loadRemoteImage(config.avatarUrlPath)
+        loadRemoteImage(config.avatarUrlPath,config.placeHolder)
     }
     
-    public func loadRemoteImage(_ urlStr: String?) {
-        guard  let urlStr = urlStr,urlStr.count > 0,let avatarUrl = URL(string: urlStr) else {
-            return
-        }
-        self.kf.setImage(with: avatarUrl, placeholder: config.placeHolder, options: nil) { result in
-//                switch result {
-//                case .success(let result):
-//                    loadImageComplete?(0,"获取图片成功",result.image)
-//                case .failure(let error):
-////                    loadImageComplete?(error.errorCode,error.errorDescription,nil)
-//                }
-        }
-    }
-    
-
-
     open override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         
@@ -85,6 +69,24 @@ open class TTAvatar: UIImageView {
    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+public extension UIImageView {
+    func loadRemoteImage(_ urlStr: String?,_ placeHolder: UIImage? = nil) {
+        guard  let urlStr = urlStr,urlStr.count > 0,let avatarUrl = URL(string: urlStr) else {
+            return
+        }
+        
+        self.kf.setImage(with: avatarUrl, placeholder: placeHolder, options: nil) { result in
+//                switch result {
+//                case .success(let result):
+//                    loadImageComplete?(0,"获取图片成功",result.image)
+//                case .failure(let error):
+////                    loadImageComplete?(error.errorCode,error.errorDescription,nil)
+//                }
+        }
+    }
+    
 }
 
 extension Reactive where Base: UIImageView {
