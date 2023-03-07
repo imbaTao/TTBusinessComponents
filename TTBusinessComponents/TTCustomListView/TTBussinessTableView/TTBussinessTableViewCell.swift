@@ -36,6 +36,6 @@ open class TTBussinessTableViewCell: TTTableViewCell,TTBussinessBasicComponentsP
         // 头像
         viewModel.avatarUrlRelay.filterNil().map({ urlStr in
             return (nil,urlStr)
-        }).bind(to: avatar.rx.urlImage).disposed(by: cellDisposeBag)
+        }).bind(to: avatar.icon.rx.urlImage).disposed(by: cellDisposeBag)
     }
 }

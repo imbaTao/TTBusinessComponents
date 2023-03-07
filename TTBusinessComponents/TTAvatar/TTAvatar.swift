@@ -9,7 +9,7 @@ import Foundation
 import Kingfisher
 import RxSwift
 
-open class TTAvatar: UIImageView {
+open class TTAvatar: TTControll {
     open class Config: NSObject {
         public var avatarUrlPath: String?
         public var placeHolder: UIImage = TTAvatar.globalPlaceHolder
@@ -17,24 +17,36 @@ open class TTAvatar: UIImageView {
         public var contentMode: UIView.ContentMode = .scaleAspectFill
         public var borderColor: UIColor?
         public var borderWidth = CGFloat.onePixel
+        public var userEnable = false
     }
     
     // 默认全局占位图片
     static var globalPlaceHolder = TTIcons.test()
     public var config = Config()
+    public let icon = UIImageView()
+    
     public init(image: UIImage? = TTIcons.test(),configuration: ((TTAvatar.Config) -> ())? = nil) {
-        super.init(image: image)
+        super.init(frame: .zero)
+        icon.image = image
         configuration?(config)
         setupUI()
     }
     
-    func setupUI() {
-        self.layer.masksToBounds = true
-        refreshConfig()
+    open override func setupUI() {
+        addSubviews([icon])
+        
+        // config
+        layer.masksToBounds = true
+        updateConfig()
+        
+        // layout
+        icon.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     // 刷新配置的时候重新加载UI
-    public func refreshConfig(_ configuration: ((TTAvatar.Config) -> ())? = nil) {
+    public func updateConfig(_ configuration: ((TTAvatar.Config) -> ())? = nil) {
         configuration?(config)
         
         // content
@@ -46,26 +58,13 @@ open class TTAvatar: UIImageView {
             borderWidth = config.borderWidth
         }
         
+        // 是否可点击
+//        icon.isUserInteractionEnabled = config.userEnable
+        
         // avatar
-        loadRemoteImage(config.avatarUrlPath)
+        icon.loadRemoteImage(config.avatarUrlPath,config.placeHolder)
     }
     
-    public func loadRemoteImage(_ urlStr: String?) {
-        guard  let urlStr = urlStr,urlStr.count > 0,let avatarUrl = URL(string: urlStr) else {
-            return
-        }
-        self.kf.setImage(with: avatarUrl, placeholder: config.placeHolder, options: nil) { result in
-//                switch result {
-//                case .success(let result):
-//                    loadImageComplete?(0,"获取图片成功",result.image)
-//                case .failure(let error):
-////                    loadImageComplete?(error.errorCode,error.errorDescription,nil)
-//                }
-        }
-    }
-    
-
-
     open override func layoutSublayers(of layer: CALayer) {
         super.layoutSublayers(of: layer)
         
@@ -82,9 +81,31 @@ open class TTAvatar: UIImageView {
         }
     }
     
+    // 加载远端图片
+   public func loadRemoteImage(_ urlStr: String?,_ placeHolder: UIImage? = nil) {
+        icon.loadRemoteImage(urlStr,placeHolder)
+    }
    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+public extension UIImageView {
+    func loadRemoteImage(_ urlStr: String?,_ placeHolder: UIImage? = nil) {
+        guard  let urlStr = urlStr,urlStr.count > 0,let avatarUrl = URL(string: urlStr) else {
+            return
+        }
+        
+        self.kf.setImage(with: avatarUrl, placeholder: placeHolder, options: nil) { result in
+//                switch result {
+//                case .success(let result):
+//                    loadImageComplete?(0,"获取图片成功",result.image)
+//                case .failure(let error):
+////                    loadImageComplete?(error.errorCode,error.errorDescription,nil)
+//                }
+        }
+    }
+    
 }
 
 extension Reactive where Base: UIImageView {

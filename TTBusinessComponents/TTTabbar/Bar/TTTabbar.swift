@@ -8,7 +8,7 @@
 import Foundation
 
 // 外层只是个容器，包裹着bar,这样bar可以动态调整位置
-class TTTabbar: UITabBar {
+open class TTTabbar: UITabBar {
     
     // 分割线
     lazy var segementLine: UIView = {
@@ -75,7 +75,7 @@ class TTTabbar: UITabBar {
         return barStack.arrangedSubviews[index] as! TTTabbarItem
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
