@@ -111,6 +111,7 @@ PODS:
     - TTUIKit/TTComponents/TTListView
   - TTUIKit (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -124,6 +125,7 @@ PODS:
     - TTUIKit/TTIcons (= 1.0.0)
   - TTUIKit/TTAutoSizeView (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -134,6 +136,7 @@ PODS:
     - TTUIKit/TTExtension
   - TTUIKit/TTComponents (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -150,6 +153,7 @@ PODS:
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTAlert (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -164,6 +168,7 @@ PODS:
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTButton (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -176,6 +181,7 @@ PODS:
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTListView (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -188,6 +194,7 @@ PODS:
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTTextInput (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -199,6 +206,7 @@ PODS:
     - TTUIKit/TTIcons
   - TTUIKit/TTComponents/TTToast (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -210,6 +218,7 @@ PODS:
     - TTUIKit/TTIcons
   - TTUIKit/TTCore (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -219,6 +228,7 @@ PODS:
     - SnapKit (= 5.6.0)
   - TTUIKit/TTExtension (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -228,6 +238,7 @@ PODS:
     - TTUIKit/TTCore
   - TTUIKit/TTIcons (1.0.0):
     - FDFullscreenPopGesture
+    - Kingfisher
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
     - RxGesture (= 4.0.4)
@@ -286,7 +297,7 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   TTAssistKit: df972e3854792855874159ff79bfb94572a53d51
   TTBusinessComponents: d9f97b287ea70b9b10da6e45dcbd89e9d337b6a0
-  TTUIKit: f2c08e52ef91e5731ead5afdc1114ee505ae37fe
+  TTUIKit: 745be8e7a012e6d88175d7b8b259f4f1bd654bdf
 
 PODFILE CHECKSUM: 0c2906c188c0a1ad3c968f2680753617524c68f2
 
