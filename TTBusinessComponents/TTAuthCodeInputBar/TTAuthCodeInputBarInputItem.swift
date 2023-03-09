@@ -35,8 +35,8 @@ open class TTAuthCodeInputBarInputItem: TTControll {
 //            }
         }
     }
-    
-    public let inputTF = TTTextFiled.init { config in
+
+    public let inputTF = TTTextInput.init { config in
         config.caretColor = .black
         config.textFont = .bold(30)
         config.textColor = .black
@@ -76,18 +76,8 @@ open class TTAuthCodeInputBarInputItem: TTControll {
         super.setupEvents()
         
         // 监听文字变更
-        inputTF.rx.methodInvoked(#selector(UITextFieldDelegate.textField(_:shouldChangeCharactersIn:replacementString:))).subscribe(onNext: {[weak self] (value) in guard let self = self else { return }
-            
-            let content = value[2] as? String
-            let hasOldContent = self.inputTF.text?.isNotEmpty ?? false
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                if let content = content,content.isNotEmpty,let _ = content.int  {
-                    if hasOldContent == false {
-                        self.inputTF.text = content
-                        self.changeState(.complte)
-                    }
-                }
-            }
+        inputTF.rx.text.filterNil().subscribe(onNext: {[weak self] (text) in guard let self = self,text.count > 0 else { return }
+            self.changeState(.complte)
         }).disposed(by: rx.disposeBag)
     }
     
@@ -107,8 +97,6 @@ open class TTAuthCodeInputBarInputItem: TTControll {
         case .freeze:
             self.isUserInteractionEnabled = false
             self.inputTF.resignFirstResponder()
-            break
-        default:
             break
         }
     }
