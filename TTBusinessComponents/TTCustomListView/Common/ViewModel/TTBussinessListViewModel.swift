@@ -12,6 +12,7 @@ import RxOptional
 
 open class TTBussinessListViewModel: TTViewModel{
     public let modelSelectedTrigger = PublishSubject<TTBussinessListCellViewModel>()
+    public let lastModelSelectedTrigger = BehaviorRelay<TTBussinessListCellViewModel?>.init(value: nil)
     public let modelDeselectTrigger = PublishSubject<TTBussinessListCellViewModel>()
     public let items = BehaviorRelay<[TTBussinessListCellViewModel]>.init(value: [])
     

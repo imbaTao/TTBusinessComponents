@@ -69,7 +69,6 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         return cell
     }
     
-    
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row < viewModel.items.value.count else {
             return
@@ -78,18 +77,26 @@ open class TTBussinessCollectionController<T: TTBussinessListViewModel>:TTBussin
         collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .bottom)
         let cellViewModel = viewModel.items.value[indexPath.row]
         cellViewModel.selecteStateRelay.accept(true)
+        
+        // 之前选中的
+        if let lastSelectedModel = viewModel.lastModelSelectedTrigger.value,lastSelectedModel != cellViewModel {
+            lastSelectedModel.selecteStateRelay.accept(false)
+            viewModel.modelDeselectTrigger.onNext(lastSelectedModel)
+        }
+        
         viewModel.modelSelectedTrigger.onNext(cellViewModel)
+        viewModel.lastModelSelectedTrigger.accept(cellViewModel)
     }
     
-    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard indexPath.row < viewModel.items.value.count else {
-            return
-        }
-
-        let cellViewModel = viewModel.items.value[indexPath.row]
-        cellViewModel.selecteStateRelay.accept(false)
-        viewModel.modelDeselectTrigger.onNext(cellViewModel)
-    }
+//    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        guard indexPath.row < viewModel.items.value.count else {
+//            return
+//        }
+//
+//        let cellViewModel = viewModel.items.value[indexPath.row]
+//        cellViewModel.selecteStateRelay.accept(false)
+//        viewModel.modelDeselectTrigger.onNext(cellViewModel)
+//    }
     
     
     
