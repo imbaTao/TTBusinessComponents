@@ -27,7 +27,9 @@ open class TTNormalBussinessStaticRow: TTStaticRow {
         // config
         icon.isHidden = true
         icon.setContentCompressionResistancePriority(.required, for: .horizontal)
+        icon.setContentCompressionResistancePriority(.required, for: .vertical)
         icon.setContentHuggingPriority(.required, for: .horizontal)
+        icon.setContentHuggingPriority(.required, for: .vertical)
         
         switchButton.isHidden = true
         titleLabel.config(font: .regular(16), textColor: .black, text: "", alignment: .left, numberOfline: 1)

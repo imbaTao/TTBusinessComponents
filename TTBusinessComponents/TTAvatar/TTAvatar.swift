@@ -108,7 +108,7 @@ public extension UIImageView {
     
 }
 
-extension Reactive where Base: UIImageView {
+public extension Reactive where Base: UIImageView {
     var urlImage: Binder<(UIImage?,String)> {
         return Binder(
             self.base) { base,tuple in

@@ -84,7 +84,10 @@ TODO: Add long description of the pod here.
    ss.source_files = 'TTBusinessComponents/TTStaticList/**/*'
   end
  
- 
+ # button
+ s.subspec 'TTBusinessButton' do |ss|
+  ss.source_files = 'TTBusinessComponents/TTBusinessButton/**/*'
+ end
   
 
 end
