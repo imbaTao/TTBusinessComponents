@@ -26,9 +26,10 @@ open class TTStaticSectionHeader: TTView {
         }
     }
 
-    init(_ _headerHeight: CGFloat,content: String = "",lableInset: CGFloat = 12) {
+    public init(_ _headerHeight: CGFloat,content: String = "",lableInset: CGFloat = 12) {
         super.init(frame: .zero)
         headerHeight = _headerHeight
+        
 //        titleLabel.text = content
         
         

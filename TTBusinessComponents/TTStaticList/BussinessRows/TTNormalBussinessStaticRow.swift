@@ -19,6 +19,7 @@ open class TTNormalBussinessStaticRow: TTStaticRow {
     
     open override func setupUI() {
         super.setupUI()
+        backgroundColor = .white
         leftStack.addArrangedSubviews([icon,titleLabel])
         rightStack.addArrangedSubviews([subTitleLabel,switchButton,subIcon])
         addSubviews([leftStack,rightStack])

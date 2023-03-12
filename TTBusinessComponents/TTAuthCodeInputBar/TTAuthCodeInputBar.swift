@@ -56,11 +56,12 @@ open class TTAuthCodeInputBar<T: TTAuthCodeInputBarInputItem>: TTStackView {
                 self.switchLastInputItem()
             }).disposed(by: rx.disposeBag)
             
-            item.backgroundColor = .random
+//            item.backgroundColor = .random
             addArrangedSubview(item)
         }
     }
 
+    // 获取当前正在输入的
     func fetchCurrentInputItem() -> TTAuthCodeInputBarInputItem? {
          let currentItem = arrangedSubviews.first(where: { subView in
             if let subView = subView as? TTAuthCodeInputBarInputItem {
@@ -70,6 +71,8 @@ open class TTAuthCodeInputBar<T: TTAuthCodeInputBarInputItem>: TTStackView {
         }) as? TTAuthCodeInputBarInputItem
         return currentItem
     }
+    
+
     
     // 切换下一个
     func switchNextInputItem(_ beforeItem: TTAuthCodeInputBarInputItem) {

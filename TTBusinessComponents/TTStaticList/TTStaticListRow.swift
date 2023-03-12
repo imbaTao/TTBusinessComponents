@@ -110,7 +110,7 @@ public extension TTStaticRow {
         self.init(frame: .zero)
         initializer?(self)
     }
-    
+    @discardableResult
     func updateUI(_ configuaration: ((TTStaticRow) -> Void)?) -> Self {
         configuaration?(self)
         return self

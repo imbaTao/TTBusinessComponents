@@ -84,19 +84,23 @@ open class TTAuthCodeInputBarInputItem: TTControll {
     open func didChangeState(_ state: InputState) {
         switch state {
         case .inputing:
-            self.isUserInteractionEnabled = true
-            self.backgroundColor = rgba(250, 250, 250, 1)
-            self.inputTF.becomeFirstResponder()
+            borderColor = .gray102
+            isUserInteractionEnabled = true
+            backgroundColor = rgba(250, 250, 250, 1)
+            inputTF.becomeFirstResponder()
         case .complte:
-            self.layer.shadowOpacity = 0
-            self.backgroundColor = rgba(250, 250, 250, 1)
+            borderColor = .clear
+            layer.shadowOpacity = 0
+            backgroundColor = rgba(250, 250, 250, 1)
         case .unInput:
-            self.layer.shadowOpacity = 0
-            self.inputTF.text = ""
-            self.inputTF.resignFirstResponder()
+            borderColor = .clear
+            layer.shadowOpacity = 0
+            inputTF.text = ""
+            inputTF.resignFirstResponder()
         case .freeze:
-            self.isUserInteractionEnabled = false
-            self.inputTF.resignFirstResponder()
+            borderColor = .clear
+            isUserInteractionEnabled = false
+            inputTF.resignFirstResponder()
             break
         }
     }
