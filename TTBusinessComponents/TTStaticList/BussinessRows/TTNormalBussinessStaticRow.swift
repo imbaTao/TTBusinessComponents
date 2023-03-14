@@ -26,6 +26,9 @@ open class TTNormalBussinessStaticRow: TTStaticRow {
         
         
         // config
+        leftStack.isUserInteractionEnabled = false
+        rightStack.isUserInteractionEnabled = false
+        
         icon.isHidden = true
         icon.setContentCompressionResistancePriority(.required, for: .horizontal)
         icon.setContentCompressionResistancePriority(.required, for: .vertical)
