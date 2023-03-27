@@ -63,6 +63,12 @@ public extension TTBussinessListBasicViewController {
         })
     }
     
+    // 手动头部刷新
+    func manualHeaderRefresh() {
+        mainListView.mj_header?.beginRefreshing()
+    }
+    
+    
     /// 添加尾
     func addRefreshFooter() {
 //        view.backgroundColor = .gray
@@ -88,6 +94,11 @@ public extension TTBussinessListBasicViewController {
             }
         })
     }
+    
+    // 尾部头部刷新
+//    func manualFooterRefresh() {
+//        mainListView.mj_footer?.beginRefreshing()
+//    }
 }
 
 // MARK: - emptyTipsView
