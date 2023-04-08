@@ -72,6 +72,7 @@ PODS:
     - TTBusinessComponents/TTActiveLabel (= 0.1.0)
     - TTBusinessComponents/TTAuthCodeInputBar (= 0.1.0)
     - TTBusinessComponents/TTAvatar (= 0.1.0)
+    - TTBusinessComponents/TTBusinessButton (= 0.1.0)
     - TTBusinessComponents/TTBusinessCore (= 0.1.0)
     - TTBusinessComponents/TTCustomListView (= 0.1.0)
     - TTBusinessComponents/TTStaticList (= 0.1.0)
@@ -89,6 +90,10 @@ PODS:
   - TTBusinessComponents/TTAvatar (0.1.0):
     - HandyJSON
     - Kingfisher
+    - MJRefresh
+    - TTUIKit
+  - TTBusinessComponents/TTBusinessButton (0.1.0):
+    - HandyJSON
     - MJRefresh
     - TTUIKit
   - TTBusinessComponents/TTBusinessCore (0.1.0):
@@ -296,9 +301,9 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   TTAssistKit: df972e3854792855874159ff79bfb94572a53d51
-  TTBusinessComponents: d9f97b287ea70b9b10da6e45dcbd89e9d337b6a0
+  TTBusinessComponents: 7a11852b02f65c9929961fa7ea74d22b06ff5814
   TTUIKit: 745be8e7a012e6d88175d7b8b259f4f1bd654bdf
 
-PODFILE CHECKSUM: 0c2906c188c0a1ad3c968f2680753617524c68f2
+PODFILE CHECKSUM: 14f325a7be80f0eb0ffde4e60acd661e162d3747
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0

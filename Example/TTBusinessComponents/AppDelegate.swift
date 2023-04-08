@@ -32,29 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.frame = UIScreen.main.bounds;
         window!.makeKeyAndVisible()
         window!.backgroundColor = .white
+        window?.rootViewController = ViewController()
  
-//        let itemModels = [
-////            TTTabbarItemModel(title: "首页",normalImage: TTIcons.test(),selectedImage: TTIcons.backArrowBlack(),controller: <#T##UIViewController#>),
-////            TTTabbarItemModel(title: "中间",normalImage: TTIcons.test(),selectedImage: TTIcons.backArrowBlack()) : ViewController()
-//        ]
 
-//        let tabbarVC = TTTabbarViewController(itemModels)
-//        window?.rootViewController = tabbarVC
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.window?.rootViewController = UIViewController()
-//        }
-        
-//        let vc = ViewController()
-//        vc.tabBarItem = .init(title: "主页", image: TTIcons.backArrowBlack(), selectedImage: TTIcons.backArrowWhite())
-//        let viewControllers = [
-//            UINavigationController.init(rootViewController: )
-//        ]
-//
-//        let tabbarVC = UITabBarController()
-//        tabbarVC.addChildViewController(vc)
-//        window?.rootViewController = tabbarVC
-        
-        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         return true
