@@ -24,6 +24,7 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SnapKit (5.6.0)
+  - SwiftDate (6.3.1)
   - TTAssistKit (0.1.0):
     - "NSObject+Rx (= 5.2.2)"
     - RxCocoa (= 6.5.0)
@@ -254,6 +255,7 @@ PODS:
 DEPENDENCIES:
   - IQKeyboardManagerSwift
   - LookinServer
+  - SwiftDate
   - TTAssistKit (from `../../TTAssistKit`)
   - TTBusinessComponents (from `../`)
   - TTUIKit (from `../../TTUIKit`)
@@ -275,6 +277,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SnapKit
+    - SwiftDate
 
 EXTERNAL SOURCES:
   TTAssistKit:
@@ -300,10 +303,11 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   TTAssistKit: df972e3854792855874159ff79bfb94572a53d51
   TTBusinessComponents: 7a11852b02f65c9929961fa7ea74d22b06ff5814
   TTUIKit: 745be8e7a012e6d88175d7b8b259f4f1bd654bdf
 
-PODFILE CHECKSUM: 14f325a7be80f0eb0ffde4e60acd661e162d3747
+PODFILE CHECKSUM: 98ce71f31394fed935a227d9e9dea98b1c18679a
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.11.3

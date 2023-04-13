@@ -21,6 +21,8 @@ target 'TTBusinessComponents_Example' do
   pod 'TTAssistKit',:path => '../../TTAssistKit'
   pod 'IQKeyboardManagerSwift'
   pod 'LookinServer', :configurations => ['Debug']#DEBug调试UI用,得配合Lookin客户端
+  pod 'SwiftDate'
+  
   target 'TTBusinessComponents_Tests' do
     inherit! :search_paths
   end
