@@ -89,7 +89,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
         }
         let itemIndex = tableView.style == .plain ? indexPath.row : indexPath.section
         let cellViewModel = viewModel.items.value[itemIndex]
-        cellViewModel.selecteStateRelay.accept(false)
+        cellViewModel.selecteStateRelay.accept(true)
         viewModel.modelDeselectTrigger.onNext(cellViewModel)
     }
 
@@ -100,7 +100,7 @@ open class TTBussinessTableViewController<T: TTBussinessListViewModel>: TTBussin
 
         let itemIndex = tableView.style == .plain ? indexPath.row : indexPath.section
         let cellViewModel = viewModel.items.value[itemIndex]
-        cellViewModel.selecteStateRelay.accept(true)
+        cellViewModel.selecteStateRelay.accept(false)
         viewModel.modelSelectedTrigger.onNext(cellViewModel)
     }
 

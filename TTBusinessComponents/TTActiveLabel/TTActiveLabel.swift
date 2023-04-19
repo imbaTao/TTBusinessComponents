@@ -9,8 +9,11 @@ import Foundation
 import ActiveLabel
 
 open class TTActiveLabel: ActiveLabel {
+    
+   public var clickContent: ((String,Int) -> ())? = nil
     public required init(contents: [NSString],globalTextColor: UIColor = .black,hilightTextColor: UIColor = rgba(119, 145, 226, 1),_ underLine: Bool = false,font: UIFont = .regular(16),_ clickContent: @escaping (String,Int) -> ()) {
         super.init(frame: .zero)
+        self.clickContent = clickContent
         numberOfLines = 1
         textColor = globalTextColor
         self.font = font
@@ -31,9 +34,9 @@ open class TTActiveLabel: ActiveLabel {
             return attDic
         }
         
-        handleCustomTap(for: customType) { element in
+        handleCustomTap(for: customType) { [weak self]  element in guard let self = self else { return }
             let index = contents.firstIndex(of: element as NSString)!
-            clickContent(element,index)
+            self.clickContent?(element,index)
         }
     }
    
